@@ -12,7 +12,12 @@ export const siteConfig = {
   availableForWork: true,             // ← true = กำลังหางาน
 };
 
-export const socialLinks = {
+export const socialLinks: {
+  github?: string;
+  linkedin?: string;
+  twitter?: string;
+  youtube?: string;
+} = {
   github: "https://github.com/BranzX3",       // ← GitHub URL ของคุณ
   linkedin: "www.linkedin.com/in/bunzz-branz-71a155405", // ← LinkedIn URL
   // twitter: "https://x.com/Artyemis_",      // ← Twitter/X URL (ลบออกถ้าไม่ใช้)
