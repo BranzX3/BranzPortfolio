@@ -44,27 +44,27 @@ export const skills = [
   {
     category: "Frontend",
     icon: "🎨",
-    items: ["React", "Next.js", "TypeScript", "CSS / SCSS", "Tailwind CSS", "Framer Motion"],
+    items: ["React", "Next.js", "TypeScript", "CSS / SCSS", "Tailwind CSS", "Vue.js"],
   },
   {
     category: "Backend",
     icon: "⚙️",
-    items: ["Node.js", "Express", "FastAPI", "Python", "REST APIs", "GraphQL"],
+    items: ["Node.js", "Express", "FastAPI", "Python", "FastAPI"],
   },
   {
     category: "Database",
     icon: "🗄️",
-    items: ["PostgreSQL", "MongoDB", "Redis", "Prisma", "Supabase"],
+    items: ["PostgreSQL", "MongoDB", "Redis", "ChromaDB"],
   },
   {
     category: "DevOps & Cloud",
     icon: "☁️",
-    items: ["Docker", "Vercel", "AWS", "GitHub Actions", "CI/CD", "Nginx"],
+    items: ["Docker", "Vercel", "AWS", "GitHub Actions", "Nginx"],
   },
   {
     category: "Tools",
     icon: "🛠️",
-    items: ["Git", "VS Code", "Figma", "Postman", "Linear", "Notion"],
+    items: ["Git", "VS Code", "Claude Code", "Postman", "Antigravity", "Cursor"],
   },
 ];
 
@@ -72,10 +72,10 @@ export const skills = [
 export const projects = [
   {
     id: 1,
-    title: "Project Alpha",                        // ← ชื่อ project
+    title: "Dindin AI",                        // ← ชื่อ project
     description:
-      "A full-stack SaaS platform with real-time collaboration features, built with Next.js and WebSockets.",
-    tags: ["Next.js", "TypeScript", "WebSocket", "PostgreSQL"],
+      "Developed an AI web application for knowledge retrieval and tool usage using a multi-agent workflow. The system can analyze tasks, execute tool calls, and summarize results before responding to users",
+    tags: ["Docker", "Nginx", "Socket.IO", "Node.js", "Vue.js", "Claude Code"],
     github: "https://github.com/yourusername/project-alpha",
     demo: "https://project-alpha.vercel.app",
     featured: true,
