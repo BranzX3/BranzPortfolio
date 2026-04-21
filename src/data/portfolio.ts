@@ -44,12 +44,12 @@ export const skills = [
   {
     category: "Frontend",
     icon: "🎨",
-    items: ["React", "Next.js", "TypeScript", "CSS / SCSS", "Tailwind CSS", "Vue.js"],
+    items: ["React", "Next.js", "TypeScript", "CSS", "Tailwind CSS", "Vue.js"],
   },
   {
     category: "Backend",
     icon: "⚙️",
-    items: ["Node.js", "Express", "FastAPI", "Python", "FastAPI"],
+    items: ["Node.js", "Express", "FastAPI", "Python"],
   },
   {
     category: "Database",
@@ -72,92 +72,97 @@ export const skills = [
 export const projects = [
   {
     id: 1,
-    title: "Dindin AI",                        // ← ชื่อ project
+    title: "Dindin AI Platform (Mae Fah Luang University)",
     description:
-      "Developed an AI web application for knowledge retrieval and tool usage using a multi-agent workflow. The system can analyze tasks, execute tool calls, and summarize results before responding to users",
-    tags: ["Docker", "Nginx", "Socket.IO", "Node.js", "Vue.js", "Claude Code"],
-    github: "https://github.com/yourusername/project-alpha",
-    demo: "https://project-alpha.vercel.app",
+      "Developed an AI platform with a multi-agent architecture for knowledge retrieval and tool execution. Designed task analysis, execution, and summarization agents with canonical memory for context persistence. Integrated LLMs via AWS Bedrock and exposed an OpenAI-compatible API for external usage. Implemented real-time streaming responses using Socket.IO and deployed with Docker and Nginx.",
+    tags: [
+      "Docker",
+      "Nginx",
+      "Vue.js",
+      "Node.js",
+      "MongoDB",
+      "AWS Bedrock",
+      "OpenAI-compatible API",
+      "Socket.IO",
+      "MFU SSO",
+      "MCP Client"
+    ],
+    github: "https://github.com/patipanbank/MFULearnAi",
+    demo: "https://mfulearnai.mfu.ac.th/login",
+    image: "/projects/dindin-preview.png",
     featured: true,
-    color: "#6366f1",                             // ← สี accent ของ card
+    color: "#6366f1",
   },
   {
     id: 2,
-    title: "Project Beta",
+    title: "CCTVMAP (CCTV Monitoring System)",
     description:
-      "An AI-powered document analysis tool that processes PDFs using OCR and LLM technology.",
-    tags: ["Python", "FastAPI", "React", "OpenAI"],
-    github: "https://github.com/yourusername/project-beta",
-    demo: "",                                     // ← ว่างถ้าไม่มี demo
+      "Built a CCTV monitoring system for visualizing camera locations, status, and live streaming. Implemented internal network camera health checks (ping) and integrated video streaming. Used as a testing environment for MCP server integration with external tools.",
+    tags: [
+      "Docker",
+      "Nginx",
+      "Vue.js",
+      "FastAPI",
+      "MFU SSO"
+    ],
+    github: "https://github.com/NeonWunna/CCTVmfu",
+    demo: "https://cctvmap.mfu.ac.th/",
+    image: "/projects/cctvmap.png",
     featured: true,
     color: "#8b5cf6",
   },
   {
     id: 3,
-    title: "Project Gamma",
+    title: "Room Booking System",
     description:
-      "A mobile-first e-commerce storefront with Stripe payments and real-time inventory management.",
-    tags: ["React", "Node.js", "MongoDB", "Stripe"],
-    github: "https://github.com/yourusername/project-gamma",
-    demo: "https://project-gamma.vercel.app",
-    featured: false,
+      "Developed a room booking system integrated with MFU internal APIs. Implemented booking validation to prevent scheduling conflicts and built a responsive UI for browsing and reservations.",
+    tags: [
+      "Docker",
+      "Nginx",
+      "Vue.js",
+      "FastAPI",
+      "MFU Internal API"
+    ],
+    github: "https://github.com/nalikanon/booking4Roommfu",
+    demo: "https://roombooking.mfu.ac.th/",
+    image: "/projects/roombooking.png",
+    featured: true,
     color: "#06b6d4",
-  },
-  {
-    id: 4,
-    title: "Project Delta",
-    description:
-      "Open-source CLI toolkit for automating deployment workflows across multiple cloud providers.",
-    tags: ["TypeScript", "CLI", "Docker", "AWS"],
-    github: "https://github.com/yourusername/project-delta",
-    demo: "",
-    featured: false,
-    color: "#10b981",
-  },
+  }
 ];
 
 // ─── Experience ───────────────────────────────────────────────
 export const experience = [
   {
     id: 1,
-    title: "Senior Frontend Developer",           // ← ตำแหน่ง
-    company: "Awesome Company",                   // ← ชื่อบริษัท
-    companyUrl: "https://awesomecompany.com",     // ← URL บริษัท (ใส่ "" ถ้าไม่มี)
-    period: "2023 – Present",                    // ← ช่วงเวลา
-    location: "Bangkok, Thailand",
-    description: [
-      "Led the development of a new customer-facing dashboard, reducing load time by 40%.",
-      "Mentored a team of 4 junior developers and established coding standards.",
-      "Architected a micro-frontend system enabling independent team deployments.",
-    ],
-    technologies: ["React", "TypeScript", "GraphQL", "AWS"],
-  },
-  {
-    id: 2,
     title: "Full Stack Developer",
-    company: "Tech Startup XYZ",
+    company: "Mae Fah Luang University",
     companyUrl: "",
-    period: "2022 – 2023",
-    location: "Remote",
+    period: "2025 – 2026",
+    location: "Chiang Rai, Thailand",
     description: [
-      "Built and maintained 3 production web applications serving 10k+ monthly users.",
-      "Designed and implemented RESTful APIs consumed by mobile and web clients.",
-      "Reduced deployment time by 60% by introducing GitHub Actions CI/CD pipelines.",
+      "Built frontend applications using Vue.js and backend services using Node.js and FastAPI.",
+      "Designed and implemented a multi-agent AI system with task analysis, execution, and summarization roles.",
+      "Implemented canonical memory to persist and reuse context across interactions.",
+      "Integrated LLM services via AWS Bedrock and exposed an OpenAI-compatible API.",
+      "Built an API Gateway layer for managing and routing AI requests.",
+      "Integrated MCP client for connecting with external tool servers.",
+      "Tested MCP server integration using a CCTV monitoring system (CCTVMAP).",
+      "Implemented MFU SSO authentication across systems.",
+      "Deployed applications using Docker and configured Nginx for routing.",
+      "Improved response latency and overall user experience.",
+      "Implemented real-time AI response streaming using Socket.IO."
     ],
-    technologies: ["Next.js", "Node.js", "PostgreSQL", "Docker"],
-  },
-  {
-    id: 3,
-    title: "Junior Web Developer",
-    company: "Digital Agency ABC",
-    companyUrl: "",
-    period: "2021 – 2022",
-    location: "Bangkok, Thailand",
-    description: [
-      "Developed responsive websites for 15+ clients across various industries.",
-      "Collaborated with design teams to implement pixel-perfect UI components.",
+    technologies: [
+      "Vue.js",
+      "Node.js",
+      "FastAPI",
+      "MongoDB",
+      "Docker",
+      "Nginx",
+      "AWS Bedrock",
+      "Socket.IO"
     ],
-    technologies: ["React", "CSS", "WordPress", "PHP"],
   },
 ];
 
@@ -165,14 +170,22 @@ export const experience = [
 export const education = [
   {
     id: 1,
-    degree: "B.Sc. Computer Science",            // ← วุฒิการศึกษา
-    institution: "University Name",              // ← ชื่อมหาวิทยาลัย
-    period: "2017 – 2021",
-    location: "Bangkok, Thailand",
-    gpa: "3.8 / 4.0",                           // ← ลบบรรทัดนี้ถ้าไม่ต้องการแสดง
-    highlights: [
-      "Dean's List — 3 consecutive years",
-      "Senior project: AI-based traffic prediction system",
-    ],
+    degree: "B.Eng. Computer Engineering",
+    institution: "Mae Fah Luang University",
+    period: "2022 – 2025",
+    location: "Chiang Rai, Thailand",
+    gpa: "3.16 / 4.0",
   },
+];
+
+// ─── Certifications ───────────────────────────────────────────
+export const certifications = [
+  {
+    id: 1,
+    name: "HCCDA-Tech-Essentials",
+    issuer: "Huawei Cloud",
+    date: "2025",
+    link: "", // ← ใส่ link ตรวจสอบ (ถ้ามี)
+    image: "/projects/HWENDCTEDA095306.png", // ← ใส่รูปภาพ cert (ถ้ามี)
+  }
 ];

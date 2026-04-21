@@ -1,4 +1,5 @@
 import { projects } from "@/data/portfolio";
+import ImageLightbox from "./ImageLightbox";
 import styles from "./Projects.module.css";
 
 export default function Projects() {
@@ -27,13 +28,16 @@ export default function Projects() {
                 ["--project-color" as any]: project.color,
               }}
             >
-              {/* Optional image placeholder if you want to add images later */}
+              {/* Project Image */}
               <div className={styles.imageWrap}>
-                <div className={styles.imagePlaceholder}>
-                  <span className={styles.placeholderIcon}>🖼️</span>
-                  <p>Project Image</p>
-                </div>
-                {/* <img src={project.image} alt={project.title} className={styles.image} /> */}
+                {(project as any).image ? (
+                  <ImageLightbox src={(project as any).image} alt={project.title} className={styles.image} />
+                ) : (
+                  <div className={styles.imagePlaceholder}>
+                    <span className={styles.placeholderIcon}>🖼️</span>
+                    <p>Project Image</p>
+                  </div>
+                )}
               </div>
 
               <div className={styles.content}>

@@ -82,11 +82,13 @@ export default function Experience() {
                       <p className={styles.gpa}>GPA: <span>{edu.gpa}</span></p>
                     )}
                     
-                    <ul className={styles.descriptionList}>
-                      {edu.highlights.map((hlt, i) => (
-                        <li key={i}>{hlt}</li>
-                      ))}
-                    </ul>
+                    {(edu as any).highlights && (
+                      <ul className={styles.descriptionList}>
+                        {(edu as any).highlights.map((hlt: string, i: number) => (
+                          <li key={i}>{hlt}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </div>
               ))}
