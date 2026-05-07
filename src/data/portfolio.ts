@@ -10,7 +10,7 @@ export const siteConfig = {
   email: "bunzzbranzz@gmail.com",        // ← อีเมลของคุณ
   location: "Lampang, Thailand",      // ← ที่อยู่/เมือง
   availableForWork: true,             // ← true = กำลังหางาน
-  resumeUrl: "/projects/resume.pdf",           // ← ใส่ path ไฟล์ในโฟลเดอร์ public หรือใส่เป็น Link Google Drive ก็ได้
+  resumeUrl: "/resume",                         // ← Resume page ที่ export เป็น PDF ได้ (ไปที่ /resume แล้วกด Download PDF)
 };
 
 export const socialLinks: {
