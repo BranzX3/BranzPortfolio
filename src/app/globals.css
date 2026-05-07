@@ -373,15 +373,22 @@ code {
   list-style: none;
 }
 
-.nav-links a {
+.nav-links a,
+.nav-links button {
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--color-text-secondary);
   transition: color var(--transition-fast);
   position: relative;
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
 }
 
-.nav-links a::after {
+.nav-links a::after,
+.nav-links button::after {
   content: '';
   position: absolute;
   bottom: -4px;
@@ -392,11 +399,13 @@ code {
   transition: width var(--transition-base);
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links button:hover {
   color: var(--color-text-primary);
 }
 
-.nav-links a:hover::after {
+.nav-links a:hover::after,
+.nav-links button:hover::after {
   width: 100%;
 }
 
@@ -469,5 +478,75 @@ code {
 
   .container {
     padding: 0 var(--space-4);
+  }
+}
+
+/* ── Print Styles ────────────────────────────────────────── */
+@media print {
+  /* Set base to light mode for printing to save ink */
+  body, html {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+  
+  /* Hide interactive/unnecessary elements */
+  .nav, 
+  .nav-toggle,
+  .no-print,
+  button,
+  footer {
+    display: none !important;
+  }
+
+  /* Strip out dark mode effects, glows, and backgrounds */
+  body::before,
+  .glow,
+  .glass {
+    background: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid #e2e8f0 !important;
+  }
+
+  /* Force text colors to black */
+  h1, h2, h3, h4, h5, h6, p, span, div, a, li, ul {
+    color: #000000 !important;
+    text-shadow: none !important;
+  }
+
+  /* Override gradient text */
+  .gradient-text,
+  .nav-logo {
+    background: none !important;
+    -webkit-text-fill-color: #000000 !important;
+    color: #000000 !important;
+  }
+
+  /* Borders for items that usually rely on background */
+  .tag, .btn {
+    border: 1px solid #cbd5e1 !important;
+    background: transparent !important;
+    color: #000000 !important;
+  }
+
+  /* Improve page breaking */
+  .section {
+    page-break-inside: avoid;
+    padding: 2rem 0 !important; /* Tighter padding */
+  }
+
+  h2, h3, h4 {
+    page-break-after: avoid;
+  }
+
+  p, li {
+    page-break-inside: avoid;
+  }
+
+  /* Container adjustments for full width printing */
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
   }
 }
