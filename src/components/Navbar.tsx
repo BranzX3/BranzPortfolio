@@ -43,18 +43,6 @@ export default function Navbar() {
               </li>
             ))}
             <li>
-              <button 
-                onClick={() => {
-                  window.print();
-                  handleNavClick();
-                }}
-                className="no-print"
-                aria-label="Export to PDF"
-              >
-                📄 PDF
-              </button>
-            </li>
-            <li>
               <a href="#contact" className="nav-cta" onClick={handleNavClick}>
                 Hire Me
               </a>
