@@ -1,37 +1,48 @@
 "use client";
 
 import { siteConfig } from "@/data/portfolio";
-import styles from "./Footer.module.css";
 
 export default function Footer() {
-  const year = new Date().getFullYear();
-  
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className={styles.footer}>
-      <div className="container">
-        <div className={styles.inner}>
-          <div className={styles.brand}>
-            <span className={styles.logo}>{siteConfig.name.split(" ")[0]}.</span>
-            <p className={styles.tagline}>{siteConfig.tagline}</p>
+    <footer
+      style={{
+        borderTop: "1px solid var(--color-border)",
+        padding: "2.5rem 0",
+        background: "var(--bg-dark)",
+      }}
+    >
+      <div
+        className="container"
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "1rem",
+        }}
+      >
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+          <div style={{ fontSize: "0.95rem", fontWeight: 600, color: "var(--text-main)" }}>
+            © {currentYear} {siteConfig.name} {siteConfig.lastName}. All rights reserved.
           </div>
-          
-          <div className={styles.copyright}>
-            <p>© {year} {siteConfig.name}. All rights reserved.</p>
-            <p className={styles.builtWith}>
-              Built with <span className={styles.heart}>♥</span> using Next.js
-            </p>
+          <div style={{ fontSize: "0.8rem", color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
+            Designed & Engineered with Modern Dark Editorial Aesthetic
           </div>
-          
-          <button 
-            className={styles.backToTop}
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            aria-label="Back to top"
-          >
-            <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path d="M5 15l7-7 7 7" />
-            </svg>
-          </button>
         </div>
+
+        <a
+          href="#hero"
+          className="btn-secondary"
+          style={{
+            padding: "0.45rem 1rem",
+            fontSize: "0.82rem",
+            borderRadius: "var(--radius-full)",
+          }}
+        >
+          Back to Top ↑
+        </a>
       </div>
     </footer>
   );

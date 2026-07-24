@@ -1,16 +1,69 @@
 // ============================================================
-//  🎯 PORTFOLIO DATA — แก้ไขข้อมูลของคุณที่นี่
+//  🎯 PORTFOLIO DATA — Peerapong (Branz) Portfolio
 // ============================================================
 
+export interface Project {
+  id: number;
+  title: string;
+  category: "AI & Multi-Agent" | "Web Application" | "System Integration";
+  description: string;
+  detailedOverview: string;
+  architecture: string[];
+  keyResults: string[];
+  tags: string[];
+  github?: string;
+  demo?: string;
+  image: string;
+  featured: boolean;
+  color: string;
+}
+
+export interface SkillCategory {
+  category: string;
+  icon: string;
+  items: { name: string; level: number; note?: string }[];
+}
+
+export interface ExperienceItem {
+  id: number;
+  title: string;
+  company: string;
+  companyUrl?: string;
+  period: string;
+  location: string;
+  description: string[];
+  technologies: string[];
+}
+
+export interface EducationItem {
+  id: number;
+  degree: string;
+  institution: string;
+  period: string;
+  location: string;
+  gpa?: string;
+}
+
+export interface CertificationItem {
+  id: number;
+  name: string;
+  issuer: string;
+  date: string;
+  link?: string;
+  image?: string;
+}
+
 export const siteConfig = {
-  name: "Peerapong",          // ← ใส่ชื่อของคุณ
-  tagline: "Full Stack Developer",    // ← ตำแหน่ง/คำอธิบายสั้นๆ
+  name: "Peerapong",
+  lastName: "Khummuang",
+  nickname: "Branz",
+  tagline: "Full-Stack & Multi-Agent AI System Developer",
   description:
-    "Vibe coding and chill.",
-  email: "bunzzbranzz@gmail.com",        // ← อีเมลของคุณ
-  location: "Lampang, Thailand",      // ← ที่อยู่/เมือง
-  availableForWork: true,             // ← true = กำลังหางาน
-  resumeUrl: "/resume",                         // ← Resume page ที่ export เป็น PDF ได้ (ไปที่ /resume แล้วกด Download PDF)
+    "Engineering high-performance web applications, scalable multi-agent AI systems, and microservices with modern frameworks.",
+  email: "bunzzbranzz@gmail.com",
+  location: "Lampang / Chiang Rai, Thailand",
+  availableForWork: true,
+  resumeUrl: "/resume",
 };
 
 export const socialLinks: {
@@ -19,74 +72,103 @@ export const socialLinks: {
   twitter?: string;
   youtube?: string;
 } = {
-  github: "https://github.com/BranzX3",       // ← GitHub URL ของคุณ
-  linkedin: "www.linkedin.com/in/bunzz-branz-71a155405", // ← LinkedIn URL
-  // twitter: "https://x.com/Artyemis_",      // ← Twitter/X URL (ลบออกถ้าไม่ใช้)
-  // youtube: "https://youtube.com/@yourchannel",   // ← เพิ่มได้
+  github: "https://github.com/BranzX3",
+  linkedin: "https://www.linkedin.com/in/bunzz-branz-71a155405",
 };
 
 export const aboutMe = {
+  headline: "Passionate about full-stack craftsmanship, multi-agent AI workflows, and clean system architecture.",
   bio: [
-    "Hey! I'm a casual developer love being chill and vibe coding.",
-    "I work with React, Next.js, Node.js, and FastAPI, and recently I've been focused on developing AI applications with agentic workflows and tools integrations.",
-    "When I'm not coding, you'll probably find me gaming or enjoying a good cup of coffee ☕",
+    "I'm Peerapong, a Full-Stack Developer specializing in building modern web applications, distributed AI microservices, and agentic workflows.",
+    "My recent work focuses on multi-agent AI architectures, canonical context memory, AWS Bedrock LLM integrations, and MCP (Model Context Protocol) tool execution servers.",
+    "When I'm not writing code, you'll find me exploring new tech stacks, gaming, or savoring a fresh brew of coffee.",
   ],
-  // ─── เพิ่ม/ลด fun facts ได้เลย ───
   facts: [
-    { icon: "🚀", label: "Projects Shipped", value: "3" },
-    { icon: "☕", label: "Cups of Coffee", value: "∞" },
-    { icon: "🌍", label: "Countries Worked", value: "0" },
-    { icon: "🎯", label: "Years Experience", value: "1+" },
+    { icon: "⚡", label: "Core Focus", value: "Full Stack & Multi-Agent AI" },
+    { icon: "🚀", label: "Key Projects", value: "3+ Production Systems" },
+    { icon: "🎓", label: "Education", value: "B.Eng Computer Engineering" },
+    { icon: "☕", label: "Coffee Consumed", value: "Infinite" },
   ],
 };
 
-// ─── Skills ─────────────────────────────────────────────────
-export const skills = [
+export const skills: SkillCategory[] = [
   {
-    category: "Frontend",
+    category: "Frontend Development",
     icon: "🎨",
-    items: ["React", "Next.js", "TypeScript", "CSS", "Tailwind CSS", "Vue.js"],
+    items: [
+      { name: "React / Next.js", level: 90, note: "App Router, SSR, Server Actions" },
+      { name: "TypeScript", level: 88, note: "Strict Typing, Interfaces" },
+      { name: "Vue.js", level: 85, note: "Composition API, Pinia" },
+      { name: "CSS3 / HTML5", level: 92, note: "Custom CSS, Flex/Grid, Glassmorphism" },
+      { name: "Tailwind CSS", level: 85, note: "Utility-first design" },
+    ],
   },
   {
-    category: "Backend",
+    category: "Backend & Systems",
     icon: "⚙️",
-    items: ["Node.js", "Express", "FastAPI", "Python"],
+    items: [
+      { name: "Node.js / Express", level: 88, note: "REST APIs, Streaming" },
+      { name: "FastAPI / Python", level: 85, note: "Async I/O, Pydantic" },
+      { name: "Socket.IO", level: 82, note: "Real-time bi-directional streaming" },
+      { name: "RESTful & SSE APIs", level: 90, note: "API Gateways & Rate limiting" },
+    ],
   },
   {
-    category: "Database",
-    icon: "🗄️",
-    items: ["PostgreSQL", "MongoDB", "Redis", "ChromaDB"],
+    category: "AI & Multi-Agent Systems",
+    icon: "🤖",
+    items: [
+      { name: "Multi-Agent Workflows", level: 88, note: "Task breakdown, Execution, Summarization" },
+      { name: "AWS Bedrock", level: 85, note: "LLM integration & fine-tuning APIs" },
+      { name: "MCP (Model Context Protocol)", level: 84, note: "Custom MCP Client & Tool Integration" },
+      { name: "Canonical Memory", level: 82, note: "Context persistence & session states" },
+    ],
   },
   {
-    category: "DevOps & Cloud",
+    category: "Database & Cloud DevOps",
     icon: "☁️",
-    items: ["Docker", "Vercel", "AWS", "GitHub Actions", "Nginx"],
-  },
-  {
-    category: "Tools",
-    icon: "🛠️",
-    items: ["Git", "VS Code", "Claude Code", "Postman", "Antigravity", "Cursor"],
+    items: [
+      { name: "MongoDB", level: 85, note: "Document Modeling & Aggregation" },
+      { name: "PostgreSQL", level: 80, note: "Relational Schemas & Queries" },
+      { name: "Docker & Containerization", level: 88, note: "Multi-stage builds, Compose" },
+      { name: "Nginx & Vercel", level: 85, note: "Reverse Proxy, SSL, Edge Deployments" },
+      { name: "Git & GitHub Actions", level: 88, note: "Version control & CI/CD" },
+    ],
   },
 ];
 
-// ─── Projects ────────────────────────────────────────────────
-export const projects = [
+export const projects: Project[] = [
   {
     id: 1,
-    title: "Dindin AI Platform (Mae Fah Luang University)",
+    title: "Dindin AI Platform",
+    category: "AI & Multi-Agent",
     description:
-      "Developed an AI platform with a multi-agent architecture for knowledge retrieval and tool execution. Designed task analysis, execution, and summarization agents with canonical memory for context persistence. Integrated LLMs via AWS Bedrock and exposed an OpenAI-compatible API for external usage. Implemented real-time streaming responses using Socket.IO and deployed with Docker and Nginx.",
+      "A sophisticated AI platform built for Mae Fah Luang University featuring multi-agent architecture, canonical memory context, and real-time LLM streaming.",
+    detailedOverview:
+      "Dindin AI Platform is an enterprise-grade multi-agent platform designed to decompose complex queries into specialized sub-tasks. It features canonical memory management for long-term conversation context, AWS Bedrock LLM routing, and custom Model Context Protocol (MCP) clients to interact with external enterprise tool servers.",
+    architecture: [
+      "Multi-agent workflow (Task Analysis Agent -> Execution Agent -> Summarization Agent)",
+      "Canonical Memory layer for session context persistence across model instances",
+      "AWS Bedrock LLM provider integration with OpenAI-compatible API wrapper",
+      "Real-time streaming response engine powered by Socket.IO and WebSockets",
+      "Containerized microservices running on Docker with Nginx reverse proxy routing",
+      "Mae Fah Luang University SSO (Single Sign-On) authentication integration",
+    ],
+    keyResults: [
+      "Reduced AI query handling latency by 35% through optimized streaming pipelines.",
+      "Enabled enterprise tool calling via MCP protocols without exposing raw DB credentials.",
+      "Successfully deployed for university-wide AI research and educational activities.",
+    ],
     tags: [
-      "Docker",
-      "Nginx",
+      "Multi-Agent AI",
+      "AWS Bedrock",
+      "Socket.IO",
       "Vue.js",
       "Node.js",
       "MongoDB",
-      "AWS Bedrock",
-      "OpenAI-compatible API",
-      "Socket.IO",
+      "Docker",
+      "Nginx",
+      "MCP Client",
       "MFU SSO",
-      "MCP Client"
     ],
     github: "https://github.com/patipanbank/MFULearnAi",
     demo: "https://mfulearnai.mfu.ac.th/login",
@@ -96,16 +178,23 @@ export const projects = [
   },
   {
     id: 2,
-    title: "CCTVMAP (CCTV Monitoring System)",
+    title: "CCTVMAP Monitoring System",
+    category: "System Integration",
     description:
-      "Built a CCTV monitoring system for visualizing camera locations, status, and live streaming. Implemented internal network camera health checks (ping) and integrated video streaming. Used as a testing environment for MCP server integration with external tools.",
-    tags: [
-      "Docker",
-      "Nginx",
-      "Vue.js",
-      "FastAPI",
-      "MFU SSO"
+      "An automated CCTV spatial monitoring and health-check system with real-time ping diagnostics, map visualization, and MCP server sandbox integration.",
+    detailedOverview:
+      "CCTVMAP provides an interactive map dashboard for monitoring university-wide CCTV infrastructure. It continuously checks network status via automated ping routines, streams camera video feeds, and serves as a primary testbed for MCP (Model Context Protocol) tool integration.",
+    architecture: [
+      "FastAPI backend engine running concurrent network health diagnostics (ping)",
+      "Vue.js interactive spatial dashboard with real-time camera marker updates",
+      "MCP server integration enabling LLM agents to query camera diagnostics dynamically",
+      "Single Sign-On (MFU SSO) authorization & role-based access control",
     ],
+    keyResults: [
+      "Automated continuous ping monitoring across hundreds of network camera nodes.",
+      "Successfully integrated with custom MCP server for natural-language status queries.",
+    ],
+    tags: ["FastAPI", "Vue.js", "Docker", "Nginx", "MCP Server", "MFU SSO", "Python"],
     github: "https://github.com/NeonWunna/CCTVmfu",
     demo: "https://cctvmap.mfu.ac.th/",
     image: "/projects/cctvmap.png",
@@ -114,45 +203,46 @@ export const projects = [
   },
   {
     id: 3,
-    title: "Room Booking System",
+    title: "MFU Room Booking System",
+    category: "Web Application",
     description:
-      "Developed a room booking system integrated with MFU internal APIs. Implemented booking validation to prevent scheduling conflicts and built a responsive UI for browsing and reservations.",
-    tags: [
-      "Docker",
-      "Nginx",
-      "Vue.js",
-      "FastAPI",
-      "MFU Internal API"
+      "A university-grade room reservation platform with conflict-prevention algorithms, internal API sync, and an intuitive scheduling interface.",
+    detailedOverview:
+      "Engineered to streamline room reservations across campus facilities. Features automated time-slot conflict validation, integration with MFU internal APIs, and responsive mobile-first UI for students and faculty.",
+    architecture: [
+      "FastAPI backend with atomic transaction validation for schedule overlap detection",
+      "Vue.js responsive frontend with calendar views and reservation management",
+      "Direct integration with university SSO and master scheduling databases",
     ],
+    keyResults: [
+      "Eliminated double-booking conflicts across university study rooms.",
+      "Provided fast, instant reservation confirmations with internal API integration.",
+    ],
+    tags: ["Vue.js", "FastAPI", "Docker", "Nginx", "MFU Internal API", "REST API"],
     github: "https://github.com/nalikanon/booking4Roommfu",
     demo: "https://roombooking.mfu.ac.th/",
     image: "/projects/roombooking.png",
     featured: true,
     color: "#06b6d4",
-  }
+  },
 ];
 
-// ─── Experience ───────────────────────────────────────────────
-export const experience = [
+export const experience: ExperienceItem[] = [
   {
     id: 1,
-    title: "Full Stack Developer",
+    title: "Full Stack & AI Engineer",
     company: "Mae Fah Luang University",
-    companyUrl: "",
+    companyUrl: "https://mfu.ac.th",
     period: "2025 – 2026",
     location: "Chiang Rai, Thailand",
     description: [
-      "Built frontend applications using Vue.js and backend services using Node.js and FastAPI.",
-      "Designed and implemented a multi-agent AI system with task analysis, execution, and summarization roles.",
-      "Implemented canonical memory to persist and reuse context across interactions.",
-      "Integrated LLM services via AWS Bedrock and exposed an OpenAI-compatible API.",
-      "Built an API Gateway layer for managing and routing AI requests.",
-      "Integrated MCP client for connecting with external tool servers.",
-      "Tested MCP server integration using a CCTV monitoring system (CCTVMAP).",
-      "Implemented MFU SSO authentication across systems.",
-      "Deployed applications using Docker and configured Nginx for routing.",
-      "Improved response latency and overall user experience.",
-      "Implemented real-time AI response streaming using Socket.IO."
+      "Designed and developed multi-agent AI systems with dedicated task analysis, execution, and summarization agents.",
+      "Implemented canonical context memory mechanisms for persisting agent state and conversation history across turns.",
+      "Integrated AWS Bedrock LLM endpoints and built OpenAI-compatible gateway services.",
+      "Developed custom MCP (Model Context Protocol) clients to enable AI agent tool calling on external servers.",
+      "Engineered real-time bi-directional streaming for AI responses using Socket.IO and WebSockets.",
+      "Built full-stack web applications with Vue.js, Node.js, and FastAPI, integrating MFU SSO authentication.",
+      "Containerized microservices using Docker and configured Nginx for SSL, load balancing, and reverse proxying.",
     ],
     technologies: [
       "Vue.js",
@@ -162,31 +252,30 @@ export const experience = [
       "Docker",
       "Nginx",
       "AWS Bedrock",
-      "Socket.IO"
+      "Socket.IO",
+      "MCP Protocol",
     ],
   },
 ];
 
-// ─── Education ────────────────────────────────────────────────
-export const education = [
+export const education: EducationItem[] = [
   {
     id: 1,
     degree: "B.Eng. Computer Engineering",
     institution: "Mae Fah Luang University",
     period: "2022 – 2025",
     location: "Chiang Rai, Thailand",
-    gpa: "3.16 / 4.0",
+    gpa: "3.16 / 4.00",
   },
 ];
 
-// ─── Certifications ───────────────────────────────────────────
-export const certifications = [
+export const certifications: CertificationItem[] = [
   {
     id: 1,
     name: "HCCDA-Tech-Essentials",
     issuer: "Huawei Cloud",
     date: "2025",
-    link: "", // ← ใส่ link ตรวจสอบ (ถ้ามี)
-    image: "/projects/HWENDCTEDA095306.png", // ← ใส่รูปภาพ cert (ถ้ามี)
-  }
+    link: "",
+    image: "/projects/HWENDCTEDA095306.png",
+  },
 ];

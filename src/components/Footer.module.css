@@ -48,6 +48,17 @@
   font-size: 0.8rem;
 }
 
+.adminLink {
+  color: var(--color-text-secondary);
+  text-decoration: underline;
+  margin-left: 0.25rem;
+  transition: color var(--transition-fast);
+}
+
+.adminLink:hover {
+  color: var(--color-text-primary);
+}
+
 .heart {
   color: var(--color-rose);
   display: inline-block;

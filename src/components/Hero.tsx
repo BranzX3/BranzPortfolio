@@ -1,151 +1,169 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { siteConfig, socialLinks } from "@/data/portfolio";
-import styles from "./Hero.module.css";
-
-const roles = [
-  siteConfig.tagline,
-  "Frontend Developer",
-  "Backend Engineer",
-  "Problem Solver",
-];
+import { siteConfig, socialLinks, aboutMe } from "@/data/portfolio";
 
 export default function Hero() {
-  const [roleIdx,   setRoleIdx]   = useState(0);
-  const [displayed, setDisplayed] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [charIdx,   setCharIdx]   = useState(0);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  /* Typewriter effect */
-  useEffect(() => {
-    const current = roles[roleIdx];
-
-    if (!isDeleting && charIdx < current.length) {
-      timeoutRef.current = setTimeout(() => {
-        setDisplayed(current.slice(0, charIdx + 1));
-        setCharIdx((i) => i + 1);
-      }, 70);
-    } else if (!isDeleting && charIdx === current.length) {
-      timeoutRef.current = setTimeout(() => setIsDeleting(true), 2000);
-    } else if (isDeleting && charIdx > 0) {
-      timeoutRef.current = setTimeout(() => {
-        setDisplayed(current.slice(0, charIdx - 1));
-        setCharIdx((i) => i - 1);
-      }, 40);
-    } else if (isDeleting && charIdx === 0) {
-      setIsDeleting(false);
-      setRoleIdx((i) => (i + 1) % roles.length);
-    }
-
-    return () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); };
-  }, [charIdx, isDeleting, roleIdx]);
-
   return (
-    <section id="hero" className={styles.hero}>
-      {/* Animated grid background */}
-      <div className={styles.grid} aria-hidden="true" />
+    <section
+      id="hero"
+      className="section"
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        paddingTop: "7.5rem",
+        paddingBottom: "4rem",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Editorial Background Accent Light */}
+      <div
+        style={{
+          position: "absolute",
+          top: "10%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "800px",
+          height: "400px",
+          background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(99, 102, 241, 0.15), transparent 80%)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
 
-      {/* Floating orbs */}
-      <div className={styles.orb1} aria-hidden="true" />
-      <div className={styles.orb2} aria-hidden="true" />
-
-      <div className="container">
-        <div className={styles.inner}>
-
+      <div className="container" style={{ position: "relative", zIndex: 1 }}>
+        <div style={{ maxWidth: "880px" }}>
           {/* Badge */}
-          <div className={styles.badge}>
-            <span className={styles.badgeDot} />
-            {siteConfig.availableForWork
-              ? "Open to new opportunities"
-              : "Currently not available"}
-          </div>
-
-          {/* Greeting */}
-          <p className={styles.greeting}>Hey there, I&apos;m</p>
-
-          {/* Name */}
-          <h1 className={styles.name}>{siteConfig.name}</h1>
-
-          {/* Typewriter role */}
-          <div className={styles.roleWrap}>
-            <span className={styles.role}>
-              {displayed}
-              <span className={styles.cursor} aria-hidden="true">|</span>
+          <div style={{ marginBottom: "1.5rem" }}>
+            <span className="editorial-badge">
+              <span className="editorial-badge-dot" />
+              {siteConfig.location} — {siteConfig.tagline}
             </span>
           </div>
 
-          {/* Description */}
-          <p className={styles.description}>{siteConfig.description}</p>
+          {/* Main Editorial Headline */}
+          <h1
+            style={{
+              fontSize: "clamp(2.8rem, 6.5vw, 4.8rem)",
+              fontWeight: 900,
+              lineHeight: 1.08,
+              letterSpacing: "-0.03em",
+              marginBottom: "1.5rem",
+            }}
+          >
+            Engineering <span style={{ background: "var(--gradient-accent)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Multi-Agent AI</span> & Modern Full-Stack Systems
+          </h1>
 
-          {/* CTAs */}
-          <div className={styles.actions}>
-            <a href="#projects" className="btn btn-primary" id="hero-view-work">
-              View My Work
-              <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"
-                viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12h14M12 5l7 7-7 7" />
+          {/* Bio Subtitle */}
+          <p
+            style={{
+              fontSize: "clamp(1.1rem, 2vw, 1.3rem)",
+              color: "var(--text-secondary)",
+              lineHeight: 1.6,
+              maxWidth: "720px",
+              marginBottom: "2.5rem",
+            }}
+          >
+            Hello, I&apos;m <strong style={{ color: "var(--text-main)", fontWeight: 600 }}>{siteConfig.name} ({siteConfig.nickname})</strong>. {aboutMe.headline}
+          </p>
+
+          {/* Action Callouts & Links */}
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1rem", marginBottom: "4rem" }}>
+            <a href="#projects" className="btn-primary">
+              View Featured Work
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
               </svg>
             </a>
-            <a href="#contact" className="btn btn-secondary" id="hero-contact">
-              Let&apos;s Talk
+
+            <a href="#contact" className="btn-secondary">
+              Get in Touch
             </a>
+
+            {/* Social Icons Quick Bar */}
+            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginLeft: "0.5rem" }}>
+              {socialLinks.github && (
+                <a
+                  href={socialLinks.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  style={{
+                    width: "44px",
+                    height: "44px",
+                    borderRadius: "50%",
+                    border: "1px solid var(--color-border)",
+                    background: "rgba(255, 255, 255, 0.03)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "var(--text-secondary)",
+                    transition: "all 200ms ease",
+                  }}
+                >
+                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                  </svg>
+                </a>
+              )}
+              {socialLinks.linkedin && (
+                <a
+                  href={socialLinks.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  style={{
+                    width: "44px",
+                    height: "44px",
+                    borderRadius: "50%",
+                    border: "1px solid var(--color-border)",
+                    background: "rgba(255, 255, 255, 0.03)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "var(--text-secondary)",
+                    transition: "all 200ms ease",
+                  }}
+                >
+                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                  </svg>
+                </a>
+              )}
+            </div>
           </div>
 
-          {/* Social links */}
-          <div className={styles.socials}>
-            {socialLinks.github && (
-              <a href={socialLinks.github} target="_blank" rel="noopener noreferrer"
-                className={styles.socialLink} id="hero-github" aria-label="GitHub">
-                <GithubIcon />
-              </a>
-            )}
-            {socialLinks.linkedin && (
-              <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer"
-                className={styles.socialLink} id="hero-linkedin" aria-label="LinkedIn">
-                <LinkedinIcon />
-              </a>
-            )}
-            {socialLinks.twitter && (
-              <a href={socialLinks.twitter} target="_blank" rel="noopener noreferrer"
-                className={styles.socialLink} id="hero-twitter" aria-label="Twitter / X">
-                <TwitterIcon />
-              </a>
-            )}
+          {/* Stats Bar */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+              gap: "1.25rem",
+              padding: "1.75rem",
+              borderRadius: "var(--radius-xl)",
+              background: "rgba(15, 20, 30, 0.6)",
+              backdropFilter: "blur(12px)",
+              border: "1px solid var(--color-border)",
+            }}
+          >
+            {aboutMe.facts.map((fact) => (
+              <div key={fact.label} style={{ display: "flex", flexDirection: "column" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem" }}>
+                  <span style={{ fontSize: "1.2rem" }}>{fact.icon}</span>
+                  <span style={{ fontSize: "1.3rem", fontWeight: 800, color: "var(--text-main)", fontFamily: "var(--font-heading)" }}>
+                    {fact.value}
+                  </span>
+                </div>
+                <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
+                  {fact.label}
+                </span>
+              </div>
+            ))}
           </div>
-
-          {/* Scroll indicator */}
-          <a href="#about" className={styles.scroll} aria-label="Scroll down">
-            <span className={styles.scrollDot} />
-          </a>
         </div>
       </div>
     </section>
-  );
-}
-
-/* ── SVG Icons ────────────────────────────────────────────── */
-function GithubIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-    </svg>
-  );
-}
-
-function LinkedinIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-    </svg>
-  );
-}
-
-function TwitterIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
   );
 }

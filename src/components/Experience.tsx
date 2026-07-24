@@ -1,100 +1,105 @@
-import { experience, education } from "@/data/portfolio";
-import styles from "./Experience.module.css";
+"use client";
+
+import { experience } from "@/data/portfolio";
 
 export default function Experience() {
   return (
-    <section id="experience" className={`section ${styles.experience}`}>
+    <section id="experience" className="section" style={{ borderTop: "1px solid var(--color-border)" }}>
       <div className="container">
-        
-        <div className={styles.grid}>
-          {/* Work Experience */}
-          <div>
-            <div className={styles.sectionHeader}>
-              <span className={styles.headerIcon}>💼</span>
-              <h2 className="section-title" style={{ marginBottom: 0 }}>Experience</h2>
-            </div>
-            
-            <div className={styles.timeline}>
-              {experience.map((job) => (
-                <div key={job.id} className={styles.item}>
-                  <div className={styles.node} aria-hidden="true" />
-                  
-                  <div className={`glass ${styles.content}`}>
-                    <div className={styles.itemHeader}>
-                      <div>
-                        <h3 className={styles.title}>{job.title}</h3>
-                        <p className={styles.company}>
-                          {job.companyUrl ? (
-                            <a href={job.companyUrl} target="_blank" rel="noopener noreferrer">
-                              {job.company}
-                            </a>
-                          ) : (
-                            job.company
-                          )}
-                          <span className={styles.location}> • {job.location}</span>
-                        </p>
-                      </div>
-                      <div className={styles.period}>{job.period}</div>
-                    </div>
-                    
-                    <ul className={styles.descriptionList}>
-                      {job.description.map((desc, i) => (
-                        <li key={i}>{desc}</li>
-                      ))}
-                    </ul>
-                    
-                    <div className={styles.technologies}>
-                      {job.technologies.map(tech => (
-                        <span key={tech} className={styles.techBadge}>{tech}</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* Section Header */}
+        <div className="section-header">
+          <div className="section-label">04 / Experience</div>
+          <h2 className="section-title">Professional Journey</h2>
+          <p className="section-description">
+            Hands-on software development and engineering roles creating production-level applications.
+          </p>
+        </div>
 
-          {/* Education */}
-          <div>
-            <div className={styles.sectionHeader}>
-              <span className={styles.headerIcon}>🎓</span>
-              <h2 className="section-title" style={{ marginBottom: 0 }}>Education</h2>
-            </div>
-            
-            <div className={styles.timeline}>
-              {education.map((edu) => (
-                <div key={edu.id} className={styles.item}>
-                  <div className={styles.node} style={{ background: 'var(--color-purple)' }} aria-hidden="true" />
-                  
-                  <div className={`glass ${styles.content}`}>
-                    <div className={styles.itemHeader}>
-                      <div>
-                        <h3 className={styles.title}>{edu.degree}</h3>
-                        <p className={styles.company}>
-                          {edu.institution}
-                          <span className={styles.location}> • {edu.location}</span>
-                        </p>
-                      </div>
-                      <div className={styles.period}>{edu.period}</div>
-                    </div>
-                    
-                    {edu.gpa && (
-                      <p className={styles.gpa}>GPA: <span>{edu.gpa}</span></p>
-                    )}
-                    
-                    {(edu as any).highlights && (
-                      <ul className={styles.descriptionList}>
-                        {(edu as any).highlights.map((hlt: string, i: number) => (
-                          <li key={i}>{hlt}</li>
-                        ))}
-                      </ul>
-                    )}
+        {/* Timeline Container */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "2rem", maxWidth: "900px" }}>
+          {experience.map((exp) => (
+            <div
+              key={exp.id}
+              className="glass-card"
+              style={{
+                padding: "2.25rem",
+                position: "relative",
+              }}
+            >
+              {/* Top Header */}
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignItems: "flex-start",
+                  justifyContent: "space-between",
+                  gap: "1rem",
+                  marginBottom: "1.25rem",
+                  paddingBottom: "1rem",
+                  borderBottom: "1px solid var(--color-border)",
+                }}
+              >
+                <div>
+                  <h3 style={{ fontSize: "1.35rem", fontWeight: 700, color: "var(--text-main)", marginBottom: "0.2rem" }}>
+                    {exp.title}
+                  </h3>
+                  <div style={{ fontSize: "1rem", color: "var(--accent-primary)", fontWeight: 500 }}>
+                    {exp.companyUrl ? (
+                      <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "underline" }}>
+                        {exp.company}
+                      </a>
+                    ) : (
+                      exp.company
+                    )}{" "}
+                    <span style={{ color: "var(--text-muted)", fontWeight: 400 }}>• {exp.location}</span>
                   </div>
                 </div>
-              ))}
+
+                <div
+                  style={{
+                    padding: "0.35rem 0.85rem",
+                    borderRadius: "var(--radius-full)",
+                    background: "rgba(255, 255, 255, 0.05)",
+                    border: "1px solid var(--color-border)",
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.82rem",
+                    color: "var(--text-secondary)",
+                  }}
+                >
+                  {exp.period}
+                </div>
+              </div>
+
+              {/* Achievements / Bullet points */}
+              <ul style={{ display: "flex", flexDirection: "column", gap: "0.65rem", paddingLeft: "1.25rem", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>
+                {exp.description.map((bullet, i) => (
+                  <li key={i} style={{ fontSize: "0.98rem", lineHeight: 1.6 }}>
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+
+              {/* Technologies Badges */}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+                {exp.technologies.map((tech) => (
+                  <span
+                    key={tech}
+                    style={{
+                      padding: "0.25rem 0.7rem",
+                      borderRadius: "var(--radius-sm)",
+                      background: "rgba(99, 102, 241, 0.08)",
+                      border: "1px solid rgba(99, 102, 241, 0.2)",
+                      fontSize: "0.78rem",
+                      fontFamily: "var(--font-mono)",
+                      color: "var(--accent-primary)",
+                    }}
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-          
+          ))}
         </div>
       </div>
     </section>

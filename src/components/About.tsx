@@ -1,97 +1,98 @@
-import { aboutMe, siteConfig } from "@/data/portfolio";
-import styles from "./About.module.css";
+"use client";
+
+import { aboutMe, education } from "@/data/portfolio";
 
 export default function About() {
   return (
-    <section id="about" className={`section ${styles.about}`}>
+    <section id="about" className="section" style={{ borderTop: "1px solid var(--color-border)" }}>
       <div className="container">
-        <div className={styles.grid}>
+        {/* Section Header */}
+        <div className="section-header">
+          <div className="section-label">01 / About Me</div>
+          <h2 className="section-title">Architecting Intelligent & Scalable Web Solutions</h2>
+          <p className="section-description">
+            Combining full-stack software craftsmanship with autonomous multi-agent AI integration.
+          </p>
+        </div>
 
-          {/* Left: Text */}
-          <div className={styles.content}>
-            <p className="section-label">About Me</p>
-            <h2 className="section-title">
-              Crafting digital{" "}
-              <span className="gradient-text">experiences</span>{" "}
-              that matter
-            </h2>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2.5rem" }}>
+          {/* Left Column: Bio Narrative */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+            {aboutMe.bio.map((paragraph, index) => (
+              <p
+                key={index}
+                style={{
+                  fontSize: "1.05rem",
+                  color: "var(--text-secondary)",
+                  lineHeight: 1.7,
+                }}
+              >
+                {paragraph}
+              </p>
+            ))}
 
-            <div className={styles.bio}>
-              {aboutMe.bio.map((paragraph, i) => (
-                <p key={i} style={{ animationDelay: `${i * 0.1}s` }}>
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-
-            <div className={styles.info}>
-              <div className={styles.infoRow}>
-                <span className={styles.infoLabel}>📍 Location</span>
-                <span className={styles.infoValue}>{siteConfig.location}</span>
-              </div>
-              <div className={styles.infoRow}>
-                <span className={styles.infoLabel}>📧 Email</span>
-                <a href={`mailto:${siteConfig.email}`} className={styles.infoLink}>
-                  {siteConfig.email}
-                </a>
-              </div>
-              <div className={styles.infoRow}>
-                <span className={styles.infoLabel}>💼 Status</span>
-                <span className={`${styles.infoValue} ${siteConfig.availableForWork ? styles.available : styles.unavailable}`}>
-                  {siteConfig.availableForWork ? "✅ Available for work" : "🔴 Not available"}
-                </span>
-              </div>
-            </div>
-
-            <div className={styles.actions}>
-              {siteConfig.resumeUrl && (
-                <a
-                  href={siteConfig.resumeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-primary"
-                  id="about-download-resume"
+            {/* Core Focus Pills */}
+            <div style={{ marginTop: "1rem", display: "flex", flexWrap: "wrap", gap: "0.6rem" }}>
+              {["Multi-Agent AI", "Full Stack Development", "FastAPI & Python", "Next.js & Vue", "MCP Tools", "Canonical Context Memory"].map((tag) => (
+                <span
+                  key={tag}
+                  style={{
+                    padding: "0.4rem 0.85rem",
+                    borderRadius: "var(--radius-full)",
+                    background: "rgba(99, 102, 241, 0.08)",
+                    border: "1px solid rgba(99, 102, 241, 0.2)",
+                    color: "var(--accent-primary)",
+                    fontSize: "0.82rem",
+                    fontWeight: 500,
+                  }}
                 >
-                  View / Download Resume
-                  <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"
-                    viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
-                  </svg>
-                </a>
-              )}
+                  #{tag}
+                </span>
+              ))}
             </div>
           </div>
 
-          {/* Right: Stats cards */}
-          <div className={styles.stats}>
-            {aboutMe.facts.map((fact, i) => (
+          {/* Right Column: Key Focus Cards & Education */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+            {/* Education Card */}
+            {education.map((edu) => (
               <div
-                key={i}
-                className={`glass ${styles.statCard}`}
-                style={{ animationDelay: `${i * 0.1}s` }}
+                key={edu.id}
+                className="glass-card"
+                style={{ padding: "1.75rem", borderLeft: "4px solid var(--accent-primary)" }}
               >
-                <span className={styles.statIcon}>{fact.icon}</span>
-                <span className={styles.statValue}>{fact.value}</span>
-                <span className={styles.statLabel}>{fact.label}</span>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.5rem" }}>
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "var(--accent-cyan)" }}>
+                    🎓 EDUCATION
+                  </span>
+                  <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
+                    {edu.period}
+                  </span>
+                </div>
+                <h3 style={{ fontSize: "1.25rem", fontWeight: 700, color: "var(--text-main)", marginBottom: "0.25rem" }}>
+                  {edu.degree}
+                </h3>
+                <p style={{ fontSize: "0.95rem", color: "var(--text-secondary)" }}>
+                  {edu.institution} — {edu.location}
+                </p>
+                {edu.gpa && (
+                  <div style={{ marginTop: "0.75rem", display: "inline-block", padding: "0.25rem 0.75rem", background: "rgba(255, 255, 255, 0.05)", borderRadius: "var(--radius-sm)", fontSize: "0.85rem", color: "var(--text-main)", fontWeight: 600 }}>
+                    GPA: {edu.gpa}
+                  </div>
+                )}
               </div>
             ))}
 
-            {/* Code preview card */}
-            <div className={`glass ${styles.codeCard}`}>
-              <div className={styles.codeDots}>
-                <span style={{ background: "#f43f5e" }} />
-                <span style={{ background: "#facc15" }} />
-                <span style={{ background: "#10b981" }} />
+            {/* Philosophy Card */}
+            <div className="glass-card" style={{ padding: "1.75rem" }}>
+              <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "var(--accent-secondary)", marginBottom: "0.5rem" }}>
+                ⚡ DEVELOPMENT PHILOSOPHY
               </div>
-              <pre className={styles.code}>{`const dev = {
-  name: "${siteConfig.name}",
-  role: "${siteConfig.tagline}",
-  passion: "Building things",
-  coffee: true ☕,
-};`}</pre>
+              <p style={{ fontSize: "0.98rem", color: "var(--text-secondary)", lineHeight: 1.6 }}>
+                &ldquo;Building software isn&apos;t just writing syntax—it&apos;s about designing resilient pipelines, seamless user experiences, and bridging autonomous AI agents with real-world enterprise infrastructure.&rdquo;
+              </p>
             </div>
           </div>
-
         </div>
       </div>
     </section>

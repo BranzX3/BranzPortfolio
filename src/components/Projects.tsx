@@ -1,91 +1,177 @@
-import { projects } from "@/data/portfolio";
-import ImageLightbox from "./ImageLightbox";
-import styles from "./Projects.module.css";
+"use client";
+
+import { useState } from "react";
+import { projects, Project } from "@/data/portfolio";
+import ProjectModal from "./ProjectModal";
 
 export default function Projects() {
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
+
+  const categories = ["All", "AI & Multi-Agent", "Web Application", "System Integration"];
+
+  const filteredProjects =
+    selectedCategory === "All"
+      ? projects
+      : projects.filter((p) => p.category === selectedCategory);
+
   return (
-    <section id="projects" className={`section ${styles.projects}`}>
+    <section id="projects" className="section" style={{ borderTop: "1px solid var(--color-border)" }}>
       <div className="container">
-        <div className={styles.header}>
-          <div className={styles.headerContent}>
-            <p className="section-label">Selected Work</p>
-            <h2 className="section-title">
-              Featured <span className="gradient-text">Projects</span>
-            </h2>
+        {/* Section Header */}
+        <div className="section-header" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          <div>
+            <div className="section-label">03 / Featured Work</div>
+            <h2 className="section-title">Selected Projects & Systems</h2>
+            <p className="section-description">
+              Production-ready applications, AI agent systems, and microservices engineered for performance.
+            </p>
           </div>
-          <p className="section-subtitle">
-            A selection of my recent works, including web apps, open-source tools, and experiments.
-          </p>
+
+          {/* Category Filter Pills */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem" }}>
+            {categories.map((cat) => {
+              const isActive = selectedCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  style={{
+                    padding: "0.45rem 1.1rem",
+                    borderRadius: "var(--radius-full)",
+                    fontSize: "0.88rem",
+                    fontWeight: isActive ? 600 : 400,
+                    color: isActive ? "#ffffff" : "var(--text-secondary)",
+                    background: isActive ? "var(--accent-primary)" : "rgba(255, 255, 255, 0.04)",
+                    border: isActive ? "1px solid var(--accent-primary)" : "1px solid var(--color-border)",
+                    boxShadow: isActive ? "0 4px 15px rgba(99, 102, 241, 0.3)" : "none",
+                    transition: "all 200ms ease",
+                  }}
+                >
+                  {cat}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        <div className={styles.grid}>
-          {projects.map((project, i) => (
+        {/* Projects Grid */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2rem" }}>
+          {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className={`glass ${styles.card} ${project.featured ? styles.featured : ""}`}
+              className="glass-card"
+              onClick={() => setActiveProject(project)}
               style={{
-                animationDelay: `${i * 0.1}s`,
-                ["--project-color" as any]: project.color,
+                padding: "2rem",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                cursor: "pointer",
+                position: "relative",
+                overflow: "hidden",
               }}
             >
-              {/* Project Image */}
-              <div className={styles.imageWrap}>
-                {(project as any).image ? (
-                  <ImageLightbox src={(project as any).image} alt={project.title} className={styles.image} />
-                ) : (
-                  <div className={styles.imagePlaceholder}>
-                    <span className={styles.placeholderIcon}>🖼️</span>
-                    <p>Project Image</p>
+              {/* Top Bar: Category & Arrow */}
+              <div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.25rem" }}>
+                  <span
+                    style={{
+                      padding: "0.25rem 0.75rem",
+                      borderRadius: "var(--radius-full)",
+                      background: `${project.color}15`,
+                      border: `1px solid ${project.color}40`,
+                      color: project.color,
+                      fontSize: "0.75rem",
+                      fontFamily: "var(--font-mono)",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {project.category}
+                  </span>
+                  <div
+                    style={{
+                      width: "36px",
+                      height: "36px",
+                      borderRadius: "50%",
+                      background: "rgba(255, 255, 255, 0.04)",
+                      border: "1px solid var(--color-border)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "var(--text-secondary)",
+                      transition: "transform 200ms ease",
+                    }}
+                  >
+                    ↗
                   </div>
-                )}
+                </div>
+
+                {/* Title */}
+                <h3 style={{ fontSize: "1.4rem", fontWeight: 700, color: "var(--text-main)", marginBottom: "0.75rem", lineHeight: 1.3 }}>
+                  {project.title}
+                </h3>
+
+                {/* Short Description */}
+                <p style={{ fontSize: "0.98rem", color: "var(--text-secondary)", lineHeight: 1.6, marginBottom: "1.5rem" }}>
+                  {project.description}
+                </p>
               </div>
 
-              <div className={styles.content}>
-                <div className={styles.tags}>
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="tag">
+              {/* Bottom Tech Badges */}
+              <div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.45rem", marginBottom: "1.25rem" }}>
+                  {project.tags.slice(0, 5).map((tag) => (
+                    <span
+                      key={tag}
+                      style={{
+                        padding: "0.2rem 0.6rem",
+                        borderRadius: "var(--radius-sm)",
+                        background: "rgba(255, 255, 255, 0.04)",
+                        border: "1px solid var(--color-border)",
+                        fontSize: "0.75rem",
+                        fontFamily: "var(--font-mono)",
+                        color: "var(--text-muted)",
+                      }}
+                    >
                       {tag}
                     </span>
                   ))}
+                  {project.tags.length > 5 && (
+                    <span
+                      style={{
+                        padding: "0.2rem 0.5rem",
+                        borderRadius: "var(--radius-sm)",
+                        fontSize: "0.75rem",
+                        fontFamily: "var(--font-mono)",
+                        color: "var(--accent-primary)",
+                      }}
+                    >
+                      +{project.tags.length - 5}
+                    </span>
+                  )}
                 </div>
 
-                <h3 className={styles.title}>{project.title}</h3>
-                <p className={styles.description}>{project.description}</p>
-
-                <div className={styles.links}>
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.link}
-                    >
-                      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-                      </svg>
-                      Code
-                    </a>
-                  )}
-                  {project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`${styles.link} ${styles.demoLink}`}
-                    >
-                      <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                        <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                      Live Demo
-                    </a>
-                  )}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.4rem",
+                    fontSize: "0.85rem",
+                    fontWeight: 600,
+                    color: "var(--accent-primary)",
+                  }}
+                >
+                  View Details & Architecture ➔
                 </div>
               </div>
-              <div className={styles.glowBg} aria-hidden="true" />
             </div>
           ))}
         </div>
       </div>
+
+      {/* Render Project Modal */}
+      <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />
     </section>
   );
 }
