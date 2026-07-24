@@ -15,8 +15,8 @@ export const thContent: typeof enContent = {
     title: "ตั้งค่าระบบ",
     language: "ภาษา (Language)",
     theme: "โหมดสี (Theme)",
-    light: "กระดาษละมุน (Light)",
-    dark: "กระดาษมืด (Dark)",
+    light: "ลาเต้ / ครีม (Light ☀️)",
+    dark: "อเมริกาโน่ / เอสเปรสโซ่ (Dark ☕)",
   },
   hero: {
     availabilityBadge: "เปิดรับงาน Full-Stack & AI",

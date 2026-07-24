@@ -66,9 +66,8 @@ export default function Navbar() {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "paper-nav-blur py-3 sm:py-4 shadow-sm" : "bg-transparent py-5 sm:py-7"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "paper-nav-blur py-3 sm:py-4 shadow-sm" : "bg-transparent py-5 sm:py-7"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 flex items-center justify-between gap-3 lg:gap-4">
         {/* Brand Monogram & First Name Only */}
@@ -98,11 +97,10 @@ export default function Navbar() {
               <a
                 key={item.href}
                 href={item.href}
-                className={`relative px-3.5 xl:px-5 py-2 text-sm xl:text-base font-medium transition-colors rounded-full whitespace-nowrap shrink-0 ${
-                  isActive
-                    ? "text-[var(--text-primary)] font-bold"
-                    : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-                }`}
+                className={`relative px-3.5 xl:px-5 py-2 text-sm xl:text-base font-medium transition-colors rounded-full whitespace-nowrap shrink-0 ${isActive
+                  ? "text-[var(--text-primary)] font-bold"
+                  : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                  }`}
               >
                 {isActive && (
                   <motion.span
@@ -123,9 +121,8 @@ export default function Navbar() {
           <div className="relative shrink-0" ref={settingsRef}>
             <button
               onClick={() => setSettingsOpen(!settingsOpen)}
-              className={`paper-button-secondary text-xs sm:text-sm py-2.5 px-3.5 sm:px-4 flex items-center gap-2 font-medium shrink-0 ${
-                settingsOpen ? "border-[var(--accent-color)] text-[var(--accent-color)] bg-[var(--bg-subsurface)]" : ""
-              }`}
+              className={`paper-button-secondary text-xs sm:text-sm py-2.5 px-3.5 sm:px-4 flex items-center gap-2 font-medium shrink-0 ${settingsOpen ? "border-[var(--accent-color)] text-[var(--accent-color)] bg-[var(--bg-subsurface)]" : ""
+                }`}
               title={t.settings.title}
               aria-label="Settings"
             >
@@ -150,9 +147,6 @@ export default function Navbar() {
                       <Settings className="w-4 h-4" />
                       {t.settings.title}
                     </h4>
-                    <span className="text-[10px] font-mono text-[var(--text-secondary)] bg-[var(--bg-subsurface)] px-2 py-0.5 rounded-full border border-[var(--border-color)]">
-                      v2.0
-                    </span>
                   </div>
 
                   {/* Language Selector */}
@@ -164,25 +158,23 @@ export default function Navbar() {
                     <div className="grid grid-cols-2 gap-2 p-1 rounded-xl bg-[var(--bg-main)] border border-[var(--border-color)]">
                       <button
                         onClick={() => setLanguage("en")}
-                        className={`py-2 px-3 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition-all ${
-                          lang === "en"
-                            ? "bg-[var(--text-primary)] text-[var(--bg-surface)] shadow-xs"
-                            : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-                        }`}
+                        className={`py-2 px-3 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition-all ${lang === "en"
+                          ? "bg-[var(--text-primary)] text-[var(--bg-surface)] shadow-xs"
+                          : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                          }`}
                       >
                         {lang === "en" && <Check className="w-3.5 h-3.5" />}
-                        English (EN)
+                        EN
                       </button>
                       <button
                         onClick={() => setLanguage("th")}
-                        className={`py-2 px-3 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition-all ${
-                          lang === "th"
-                            ? "bg-[var(--text-primary)] text-[var(--bg-surface)] shadow-xs"
-                            : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-                        }`}
+                        className={`py-2 px-3 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition-all ${lang === "th"
+                          ? "bg-[var(--text-primary)] text-[var(--bg-surface)] shadow-xs"
+                          : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                          }`}
                       >
                         {lang === "th" && <Check className="w-3.5 h-3.5" />}
-                        ไทย (TH)
+                        TH
                       </button>
                     </div>
                   </div>
@@ -200,25 +192,25 @@ export default function Navbar() {
                     <div className="grid grid-cols-2 gap-2 p-1 rounded-xl bg-[var(--bg-main)] border border-[var(--border-color)]">
                       <button
                         onClick={() => setTheme("light")}
-                        className={`py-2 px-3 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition-all ${
-                          theme === "light"
-                            ? "bg-[var(--text-primary)] text-[var(--bg-surface)] shadow-xs"
-                            : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-                        }`}
+                        className={`py-2 px-3 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition-all ${theme === "light"
+                          ? "bg-[var(--text-primary)] text-[var(--bg-surface)] shadow-xs"
+                          : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                          }`}
+                        title="Light"
                       >
                         <Sun className="w-3.5 h-3.5" />
-                        Light ☀️
+                        Light
                       </button>
                       <button
                         onClick={() => setTheme("dark")}
-                        className={`py-2 px-3 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition-all ${
-                          theme === "dark"
-                            ? "bg-[var(--text-primary)] text-[var(--bg-surface)] shadow-xs"
-                            : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-                        }`}
+                        className={`py-2 px-3 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition-all ${theme === "dark"
+                          ? "bg-[var(--text-primary)] text-[var(--bg-surface)] shadow-xs"
+                          : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                          }`}
+                        title="Dark"
                       >
                         <Moon className="w-3.5 h-3.5" />
-                        Dark 🌙
+                        Dark
                       </button>
                     </div>
                   </div>
@@ -283,23 +275,21 @@ export default function Navbar() {
               <div className="grid grid-cols-2 gap-2">
                 <button
                   onClick={() => setLanguage("en")}
-                  className={`py-2 px-3 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 ${
-                    lang === "en"
-                      ? "bg-[var(--text-primary)] text-[var(--bg-surface)]"
-                      : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-color)]"
-                  }`}
+                  className={`py-2 px-3 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 ${lang === "en"
+                    ? "bg-[var(--text-primary)] text-[var(--bg-surface)]"
+                    : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-color)]"
+                    }`}
                 >
-                  English (EN)
+                  EN
                 </button>
                 <button
                   onClick={() => setLanguage("th")}
-                  className={`py-2 px-3 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 ${
-                    lang === "th"
-                      ? "bg-[var(--text-primary)] text-[var(--bg-surface)]"
-                      : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-color)]"
-                  }`}
+                  className={`py-2 px-3 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 ${lang === "th"
+                    ? "bg-[var(--text-primary)] text-[var(--bg-surface)]"
+                    : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-color)]"
+                    }`}
                 >
-                  ไทย (TH)
+                  TH
                 </button>
               </div>
 
@@ -307,23 +297,23 @@ export default function Navbar() {
               <div className="grid grid-cols-2 gap-2">
                 <button
                   onClick={() => setTheme("light")}
-                  className={`py-2 px-3 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 ${
-                    theme === "light"
-                      ? "bg-[var(--text-primary)] text-[var(--bg-surface)]"
-                      : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-color)]"
-                  }`}
+                  className={`py-2 px-3 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 ${theme === "light"
+                    ? "bg-[var(--text-primary)] text-[var(--bg-surface)]"
+                    : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-color)]"
+                    }`}
+                  title="Light"
                 >
-                  <Sun className="w-3.5 h-3.5" /> Light ☀️
+                  <Sun className="w-3.5 h-3.5" /> Light
                 </button>
                 <button
                   onClick={() => setTheme("dark")}
-                  className={`py-2 px-3 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 ${
-                    theme === "dark"
-                      ? "bg-[var(--text-primary)] text-[var(--bg-surface)]"
-                      : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-color)]"
-                  }`}
+                  className={`py-2 px-3 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 ${theme === "dark"
+                    ? "bg-[var(--text-primary)] text-[var(--bg-surface)]"
+                    : "bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-color)]"
+                    }`}
+                  title="Dark"
                 >
-                  <Moon className="w-3.5 h-3.5" /> Dark 🌙
+                  <Moon className="w-3.5 h-3.5" /> Dark
                 </button>
               </div>
             </div>

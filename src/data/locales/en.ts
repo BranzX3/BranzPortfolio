@@ -13,8 +13,8 @@ export const enContent = {
     title: "Preferences",
     language: "Language",
     theme: "Theme Mode",
-    light: "Warm Paper (Light)",
-    dark: "Midnight Paper (Dark)",
+    light: "Light",
+    dark: "Dark",
   },
   hero: {
     availabilityBadge: "Open to full-stack & AI work",

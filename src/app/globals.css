@@ -66,14 +66,14 @@
 }
 
 html.dark {
-  --bg-main: #141210;
-  --bg-surface: #1E1B18;
-  --bg-subsurface: #292420;
-  --text-primary: #F4EEDC;
-  --text-secondary: #B8AC9E;
-  --accent-color: #E09245;
-  --border-color: #38312B;
-  --nav-bg: rgba(20, 18, 16, 0.88);
+  --bg-main: #12100E;
+  --bg-surface: #1B1714;
+  --bg-subsurface: #27211C;
+  --text-primary: #F5EBE1;
+  --text-secondary: #B0A294;
+  --accent-color: #D97724;
+  --border-color: #332B24;
+  --nav-bg: rgba(18, 16, 14, 0.88);
 }
 
 @theme {
