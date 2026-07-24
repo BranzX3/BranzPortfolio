@@ -1,7 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Project } from "@/data/portfolio";
+import { useLanguage } from "@/context/LanguageContext";
+import { X, ExternalLink, CheckCircle2, Award, Layers, FileText } from "lucide-react";
+import { FaGithub } from "react-icons/fa6";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -9,18 +13,23 @@ interface ProjectModalProps {
 }
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
+  const { t } = useLanguage();
+
+  // Escape key handler & Body scroll locking
   useEffect(() => {
+    if (!project) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+      }
     };
-    if (project) {
-      document.body.style.overflow = "hidden";
-      window.addEventListener("keydown", handleKeyDown);
-    } else {
-      document.body.style.overflow = "auto";
-    }
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "unset";
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [project, onClose]);
@@ -28,177 +37,163 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   if (!project) return null;
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        zIndex: 1000,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "1.5rem",
-        background: "rgba(43, 36, 30, 0.5)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-      }}
-      onClick={onClose}
-    >
-      <div
-        style={{
-          width: "100%",
-          maxWidth: "760px",
-          maxHeight: "90vh",
-          overflowY: "auto",
-          background: "var(--surface-cream)",
-          border: "1px solid var(--color-border)",
-          borderRadius: "var(--radius-xl)",
-          padding: "2.25rem",
-          boxShadow: "var(--shadow-warm-lg)",
-          position: "relative",
-        }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Close Button */}
-        <button
+    <AnimatePresence>
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 overflow-y-auto">
+        {/* Backdrop overlay */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           onClick={onClose}
-          aria-label="Close modal"
-          style={{
-            position: "absolute",
-            top: "1.5rem",
-            right: "1.5rem",
-            width: "36px",
-            height: "36px",
-            borderRadius: "50%",
-            background: "var(--bg-paper)",
-            border: "1px solid var(--color-border)",
-            color: "var(--text-secondary)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "1.1rem",
-            cursor: "pointer",
-            transition: "all 200ms ease",
-          }}
+          className="fixed inset-0 bg-[#1F1A15]/60 dark:bg-[#000000]/70 backdrop-blur-xs"
+        />
+
+        {/* Modal Container */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: 20 }}
+          transition={{ type: "spring", duration: 0.5, bounce: 0.1 }}
+          className="relative w-full max-w-4xl bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-3xl shadow-2xl overflow-hidden z-10 my-8 max-h-[90vh] flex flex-col text-[var(--text-primary)]"
         >
-          ✕
-        </button>
-
-        {/* Category & Badge */}
-        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
-          <span
-            style={{
-              padding: "0.3rem 0.8rem",
-              borderRadius: "var(--radius-full)",
-              background: "var(--accent-terracotta-light)",
-              border: "1px solid var(--accent-terracotta)",
-              color: "var(--accent-terracotta)",
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.78rem",
-              fontWeight: 600,
-            }}
-          >
-            {project.category}
-          </span>
-          {project.featured && (
-            <span style={{ fontSize: "0.78rem", color: "var(--accent-moss)", fontFamily: "var(--font-mono)", fontWeight: 500 }}>
-              ★ Featured System
-            </span>
-          )}
-        </div>
-
-        {/* Title */}
-        <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.3rem)", fontFamily: "var(--font-serif)", fontWeight: 700, color: "var(--text-ink)", marginBottom: "1.25rem" }}>
-          {project.title}
-        </h2>
-
-        {/* Detailed Overview */}
-        <div style={{ marginBottom: "1.75rem" }}>
-          <h3 style={{ fontSize: "0.85rem", fontFamily: "var(--font-mono)", color: "var(--accent-terracotta)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.5rem" }}>
-            Overview
-          </h3>
-          <p style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: 1.75 }}>
-            {project.detailedOverview}
-          </p>
-        </div>
-
-        {/* Architecture Highlights */}
-        {project.architecture && project.architecture.length > 0 && (
-          <div style={{ marginBottom: "1.75rem" }}>
-            <h3 style={{ fontSize: "0.85rem", fontFamily: "var(--font-mono)", color: "var(--accent-moss)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.75rem" }}>
-              Architecture & System Design
-            </h3>
-            <ul style={{ display: "flex", flexDirection: "column", gap: "0.65rem", paddingLeft: "1.25rem", color: "var(--text-secondary)" }}>
-              {project.architecture.map((item, i) => (
-                <li key={i} style={{ fontSize: "0.95rem", lineHeight: 1.65 }}>
-                  {item}
-                </li>
-              ))}
-            </ul>
+          {/* Header Bar */}
+          <div className="p-6 sm:p-10 border-b border-[var(--border-color)] flex items-start justify-between bg-[var(--bg-main)]/90 sticky top-0 backdrop-blur-md z-10">
+            <div>
+              <span className="paper-tag mb-3 text-xs sm:text-sm">
+                {project.category}
+              </span>
+              <h3 className="font-serif text-3xl sm:text-5xl text-[var(--text-primary)] font-bold leading-tight">
+                {project.title}
+              </h3>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-3 rounded-full border border-[var(--border-color)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:bg-[var(--bg-subsurface)] transition-colors shrink-0"
+              aria-label="Close modal"
+            >
+              <X className="w-6 h-6" />
+            </button>
           </div>
-        )}
 
-        {/* Key Results */}
-        {project.keyResults && project.keyResults.length > 0 && (
-          <div style={{ marginBottom: "1.75rem" }}>
-            <h3 style={{ fontSize: "0.85rem", fontFamily: "var(--font-mono)", color: "var(--text-ink)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.75rem" }}>
-              Key Impact & Deliverables
-            </h3>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-              {project.keyResults.map((result, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.6rem", fontSize: "0.95rem", color: "var(--text-ink)" }}>
-                  <span style={{ color: "var(--accent-terracotta)", fontWeight: 700 }}>✓</span>
-                  <span>{result}</span>
+          {/* Scrollable Modal Content */}
+          <div className="p-6 sm:p-10 space-y-8 sm:space-y-9 overflow-y-auto">
+            {/* Full-width Screenshot Preview */}
+            {project.image && (
+              <div className="relative w-full aspect-16/9 rounded-2xl overflow-hidden border border-[var(--border-color)] bg-[var(--bg-subsurface)] shadow-xs">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+            )}
+
+            {/* Project Overview */}
+            <div>
+              <h4 className="text-xs uppercase tracking-widest text-[var(--accent-color)] font-bold mb-3">
+                {t.projects.modalOverviewTitle}
+              </h4>
+              <p className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed font-light">
+                {project.detailedOverview}
+              </p>
+            </div>
+
+            {/* System Architecture */}
+            {project.architecture && project.architecture.length > 0 && (
+              <div>
+                <h4 className="text-xs uppercase tracking-widest text-[var(--accent-color)] font-bold mb-4 flex items-center gap-2">
+                  <Layers className="w-5 h-5 text-[var(--accent-color)]" />
+                  {t.projects.architectureTitle}
+                </h4>
+                <div className="bg-[var(--bg-main)]/70 border border-[var(--border-color)] rounded-2xl p-5 sm:p-6 space-y-3.5">
+                  {project.architecture.map((item, idx) => (
+                    <div key={idx} className="flex items-start gap-3.5">
+                      <CheckCircle2 className="w-5 h-5 text-[var(--accent-color)] shrink-0 mt-0.5" />
+                      <span className="text-base sm:text-lg text-[var(--text-primary)] font-light leading-snug">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+            )}
+
+            {/* Key Impact & Results */}
+            {project.keyResults && project.keyResults.length > 0 && (
+              <div>
+                <h4 className="text-xs uppercase tracking-widest text-[var(--accent-color)] font-bold mb-4 flex items-center gap-2">
+                  <Award className="w-5 h-5 text-[var(--accent-color)]" />
+                  {t.projects.modalResultsTitle}
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {project.keyResults.map((result, idx) => (
+                    <div
+                      key={idx}
+                      className="p-5 rounded-2xl bg-[var(--bg-subsurface)] border border-[var(--border-color)] text-base text-[var(--text-primary)] font-medium"
+                    >
+                      {result}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Technologies Used */}
+            <div>
+              <h4 className="text-xs uppercase tracking-widest text-[var(--text-secondary)] font-bold mb-4">
+                {t.projects.modalTechTitle}
+              </h4>
+              <div className="flex flex-wrap gap-2.5">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-4 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border-color)] text-sm text-[var(--text-primary)] font-medium"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-        )}
 
-        {/* Tags */}
-        <div style={{ marginBottom: "2rem" }}>
-          <h3 style={{ fontSize: "0.85rem", fontFamily: "var(--font-mono)", color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.6rem" }}>
-            Technologies Used
-          </h3>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                style={{
-                  padding: "0.3rem 0.75rem",
-                  borderRadius: "var(--radius-sm)",
-                  background: "var(--bg-paper)",
-                  border: "1px solid var(--color-border)",
-                  fontSize: "0.8rem",
-                  fontFamily: "var(--font-mono)",
-                  color: "var(--text-secondary)",
-                }}
+          {/* Modal Footer / Action Buttons */}
+          <div className="p-6 sm:p-8 border-t border-[var(--border-color)] bg-[var(--bg-main)]/90 flex flex-wrap items-center justify-start gap-4">
+            {project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="paper-button-primary text-sm py-3 px-6"
               >
-                {tag}
-              </span>
-            ))}
+                {t.projects.liveSiteBtn}
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            )}
+            {project.pdfDocument && (
+              <a
+                href={project.pdfDocument}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="paper-button-secondary text-sm py-3 px-6"
+              >
+                {t.projects.projectPdfBtn}
+                <FileText className="w-4 h-4 text-[var(--accent-color)]" />
+              </a>
+            )}
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="paper-button-secondary text-sm py-3 px-6"
+              >
+                {t.projects.githubBtn}
+                <FaGithub className="w-4 h-4" />
+              </a>
+            )}
           </div>
-        </div>
-
-        {/* Action Buttons */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", paddingTop: "1rem", borderTop: "1px solid var(--color-border)" }}>
-          {project.demo && (
-            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="btn-primary">
-              Launch Live Demo ↗
-            </a>
-          )}
-          {project.github && (
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn-secondary">
-              View Repository 🐙
-            </a>
-          )}
-          <button onClick={onClose} className="btn-secondary" style={{ marginLeft: "auto" }}>
-            Close
-          </button>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </AnimatePresence>
   );
 }

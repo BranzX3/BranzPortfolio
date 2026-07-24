@@ -1,5 +1,5 @@
 // ============================================================
-//  🎯 PORTFOLIO DATA — Peerapong (Branz) Portfolio
+//  🎯 PORTFOLIO DATA — Peerapong (Deego) Portfolio
 // ============================================================
 
 export interface Project {
@@ -13,6 +13,7 @@ export interface Project {
   tags: string[];
   github?: string;
   demo?: string;
+  pdfDocument?: string;
   image: string;
   featured: boolean;
   color: string;
@@ -42,6 +43,8 @@ export interface EducationItem {
   period: string;
   location: string;
   gpa?: string;
+  transcriptUrl?: string;
+  graduationCertUrl?: string;
 }
 
 export interface CertificationItem {
@@ -55,15 +58,43 @@ export interface CertificationItem {
 
 export const siteConfig = {
   name: "Peerapong",
-  lastName: "Khummuang",
-  nickname: "Branz",
-  tagline: "Full-Stack & Multi-Agent AI System Developer",
+  lastName: "Wongwichai",
+  nickname: "Deego",
+  tagline: "Full-Stack Developer & AI-Assisted Builder",
   description:
-    "Engineering high-performance web applications, scalable multi-agent AI systems, and microservices with modern frameworks.",
+    "I build web applications and AI systems, working alongside AI coding assistants as part of my everyday workflow.",
   email: "bunzzbranzz@gmail.com",
-  location: "Lampang / Chiang Rai, Thailand",
+  location: "Lampang, Thailand",
   availableForWork: true,
-  resumeUrl: "/resume",
+  resumeUrl: "/projects/Peerapong Wongwichai.pdf",
+};
+
+export const heroConfig = {
+  availabilityBadge: "Open to full-stack & AI work",
+  headlinePrefix: "I build web platforms and ",
+  headlineEmphasis: "AI systems",
+  headlineSuffix: ", with AI as a working partner.",
+  introParagraph:
+    "Hi, I'm Peerapong Wongwichai (Deego), a computer engineering graduate based in Lampang, Thailand. I've built an AI platform, a CCTV monitoring map, and a room booking system — all of them developed with AI coding assistants as part of my process.",
+  cardTag: "WHAT I WORK ON",
+  cardEdition: "2026",
+  pillars: [
+    {
+      icon: "Bot",
+      title: "AI Systems",
+      description: "Multi-agent workflows, AWS Bedrock & MCP",
+    },
+    {
+      icon: "Code2",
+      title: "Full-Stack Web",
+      description: "Vue.js, Next.js, Node.js & FastAPI",
+    },
+    {
+      icon: "Layers",
+      title: "AI-Assisted Development",
+      description: "Building with AI coding assistants day to day",
+    },
+  ],
 };
 
 export const socialLinks: {
@@ -77,18 +108,76 @@ export const socialLinks: {
 };
 
 export const aboutMe = {
-  headline: "Passionate about full-stack craftsmanship, multi-agent AI workflows, and clean system architecture.",
+  sectionTag: "01 — ABOUT",
+  sectionTitle: "A bit about me",
+  sectionSubtitle:
+    "Where I'm from, what I've built, and how I actually work day to day.",
+  headline:
+    "I like building things that work end to end — and I build them with AI in the loop.",
   bio: [
-    "I'm Peerapong, a Full-Stack Developer specializing in building modern web applications, distributed AI microservices, and agentic workflows.",
-    "My recent work focuses on multi-agent AI architectures, canonical context memory, AWS Bedrock LLM integrations, and MCP (Model Context Protocol) tool execution servers.",
-    "When I'm not writing code, you'll find me exploring new tech stacks, gaming, or savoring a fresh brew of coffee.",
+    "I'm Peerapong Wongwichai (Deego), born 28 July 2003 and currently based in Lampang, Thailand.",
+    "So far I've worked on three systems: an AI platform, a CCTV monitoring map, and a room booking system. Each one covers frontend, backend, and deployment, so I've had to be comfortable across the whole stack.",
+    "I build all of it with AI coding assistants. They're part of how I work, not a shortcut — I still have to understand the system, review what gets written, and fix what doesn't hold up.",
+    "Outside of work I'm usually reading about new tools, gaming, or drinking too much coffee.",
   ],
   facts: [
-    { icon: "⚡", label: "Core Focus", value: "Full Stack & Multi-Agent AI" },
-    { icon: "🚀", label: "Key Projects", value: "3+ Production Systems" },
-    { icon: "🎓", label: "Education", value: "B.Eng Computer Engineering" },
-    { icon: "☕", label: "Coffee Consumed", value: "Infinite" },
+    { icon: "📍", label: "Based in", value: "Lampang, Thailand" },
+    { icon: "🎂", label: "Born", value: "28 July 2003" },
+    { icon: "🛠️", label: "Systems built", value: "3 (AI, CCTV, Booking)" },
+    { icon: "🎓", label: "Education", value: "B.Eng Computer Eng." },
   ],
+  valuesTitle: "How I work",
+  values: [
+    {
+      title: "Keep it simple",
+      description:
+        "I'd rather write less code that I can still read six months from now than something clever I'll regret.",
+    },
+    {
+      title: "AI as a partner",
+      description:
+        "I use AI coding assistants on every project, and I check their work. The responsibility for the code is still mine.",
+    },
+  ],
+  motto: "Simplicity is about subtracting the obvious and adding the meaningful.",
+  mottoAuthor: "— John Maeda, The Laws of Simplicity",
+};
+
+export const projectsConfig = {
+  sectionTag: "02 — WORK",
+  sectionTitle: "Things I've built",
+  sectionSubtitle:
+    "Three systems: an AI platform, a CCTV monitoring map, and a room booking system.",
+};
+
+export const skillsConfig = {
+  sectionTag: "03 — SKILLS",
+  sectionTitle: "What I work with",
+  sectionSubtitle:
+    "Tools I've actually used on real projects, not a list of everything I've heard of.",
+};
+
+export const experienceConfig = {
+  sectionTag: "04 — BACKGROUND",
+  sectionTitle: "Experience & education",
+  sectionSubtitle:
+    "Where I've worked, what I studied, and the documents to back it up.",
+};
+
+export const contactConfig = {
+  sectionTag: "05 — CONTACT",
+  sectionTitle: "Get in touch",
+  sectionSubtitle:
+    "For full-stack work, AI systems, or just to talk about something you're building.",
+  inviteTitle: "Working on something?",
+  inviteParagraph:
+    "I'm open to full-stack development and AI systems work. Feel free to send a message — I'll get back to you.",
+  formTitle: "Send a Message",
+};
+
+export const footerConfig = {
+  motto: "Simple, functional, and honest.",
+  copyrightSuffix: "Peerapong Wongwichai. All rights reserved.",
 };
 
 export const skills: SkillCategory[] = [
@@ -114,13 +203,22 @@ export const skills: SkillCategory[] = [
     ],
   },
   {
-    category: "AI & Multi-Agent Systems",
+    category: "AI Systems",
     icon: "🤖",
     items: [
-      { name: "Multi-Agent Workflows", level: 88, note: "Task breakdown, Execution, Summarization" },
-      { name: "AWS Bedrock", level: 85, note: "LLM integration & fine-tuning APIs" },
-      { name: "MCP (Model Context Protocol)", level: 84, note: "Custom MCP Client & Tool Integration" },
-      { name: "Canonical Memory", level: 82, note: "Context persistence & session states" },
+      { name: "Multi-Agent Workflows", level: 85, note: "Task breakdown, execution, summarization" },
+      { name: "AWS Bedrock", level: 82, note: "LLM integration via API" },
+      { name: "MCP (Model Context Protocol)", level: 82, note: "Custom client & tool integration" },
+      { name: "Context Memory", level: 80, note: "Session state & conversation history" },
+    ],
+  },
+  {
+    category: "AI-Assisted Development",
+    icon: "✨",
+    items: [
+      { name: "AI Coding Assistants", level: 90, note: "Used on every project I've built" },
+      { name: "Prompting & Task Framing", level: 85, note: "Breaking work into steps an AI can handle" },
+      { name: "Reviewing AI Output", level: 85, note: "Reading, testing, and fixing what it writes" },
     ],
   },
   {
@@ -142,21 +240,21 @@ export const projects: Project[] = [
     title: "Dindin AI Platform",
     category: "AI & Multi-Agent",
     description:
-      "A sophisticated AI platform built for Mae Fah Luang University featuring multi-agent architecture, canonical memory context, and real-time LLM streaming.",
+      "An AI chat platform for Mae Fah Luang University, with a multi-agent workflow, conversation memory, and streaming responses.",
     detailedOverview:
-      "Dindin AI Platform is an enterprise-grade multi-agent platform designed to decompose complex queries into specialized sub-tasks. It features canonical memory management for long-term conversation context, AWS Bedrock LLM routing, and custom Model Context Protocol (MCP) clients to interact with external enterprise tool servers.",
+      "Dindin AI Platform splits a user's question into smaller tasks and hands them to separate agents. It keeps conversation context across turns, routes requests to LLMs through AWS Bedrock, and uses a custom MCP client so agents can call tools on other servers. Built with AI coding assistants throughout.",
     architecture: [
-      "Multi-agent workflow (Task Analysis Agent -> Execution Agent -> Summarization Agent)",
-      "Canonical Memory layer for session context persistence across model instances",
-      "AWS Bedrock LLM provider integration with OpenAI-compatible API wrapper",
-      "Real-time streaming response engine powered by Socket.IO and WebSockets",
-      "Containerized microservices running on Docker with Nginx reverse proxy routing",
-      "Mae Fah Luang University SSO (Single Sign-On) authentication integration",
+      "Multi-agent workflow: task analysis -> execution -> summarization",
+      "Memory layer that keeps session context across turns",
+      "AWS Bedrock integration behind an OpenAI-compatible API wrapper",
+      "Streaming responses over Socket.IO / WebSockets",
+      "Docker containers behind an Nginx reverse proxy",
+      "Login through the university's SSO",
     ],
     keyResults: [
-      "Reduced AI query handling latency by 35% through optimized streaming pipelines.",
-      "Enabled enterprise tool calling via MCP protocols without exposing raw DB credentials.",
-      "Successfully deployed for university-wide AI research and educational activities.",
+      "Deployed and in use at the university for AI research and teaching.",
+      "Agents can call external tools through MCP without handling database credentials directly.",
+      "Streaming makes answers show up as they're generated instead of all at once.",
     ],
     tags: [
       "Multi-Agent AI",
@@ -172,6 +270,7 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/patipanbank/MFULearnAi",
     demo: "https://mfulearnai.mfu.ac.th/login",
+    pdfDocument: "/projects/DinDinAI.pdf",
     image: "/projects/dindin-preview.png",
     featured: true,
     color: "#6366f1",
@@ -181,18 +280,18 @@ export const projects: Project[] = [
     title: "CCTVMAP Monitoring System",
     category: "System Integration",
     description:
-      "An automated CCTV spatial monitoring and health-check system with real-time ping diagnostics, map visualization, and MCP server sandbox integration.",
+      "A map dashboard that shows every CCTV camera on campus and whether it's currently online.",
     detailedOverview:
-      "CCTVMAP provides an interactive map dashboard for monitoring university-wide CCTV infrastructure. It continuously checks network status via automated ping routines, streams camera video feeds, and serves as a primary testbed for MCP (Model Context Protocol) tool integration.",
+      "CCTVMAP puts the university's cameras on an interactive map and pings them on a schedule so you can see at a glance which ones are down. It also runs an MCP server, which made it a good place to test letting an AI agent query camera status in plain language. Built with AI coding assistants throughout.",
     architecture: [
-      "FastAPI backend engine running concurrent network health diagnostics (ping)",
-      "Vue.js interactive spatial dashboard with real-time camera marker updates",
-      "MCP server integration enabling LLM agents to query camera diagnostics dynamically",
-      "Single Sign-On (MFU SSO) authorization & role-based access control",
+      "FastAPI backend running ping checks concurrently",
+      "Vue.js map dashboard with camera markers that update as status changes",
+      "MCP server so an AI agent can ask about camera status directly",
+      "University SSO login with role-based access",
     ],
     keyResults: [
-      "Automated continuous ping monitoring across hundreds of network camera nodes.",
-      "Successfully integrated with custom MCP server for natural-language status queries.",
+      "Replaced manual checking with automatic monitoring across hundreds of cameras.",
+      "You can ask an AI agent which cameras are offline and get a real answer.",
     ],
     tags: ["FastAPI", "Vue.js", "Docker", "Nginx", "MCP Server", "MFU SSO", "Python"],
     github: "https://github.com/NeonWunna/CCTVmfu",
@@ -206,17 +305,17 @@ export const projects: Project[] = [
     title: "MFU Room Booking System",
     category: "Web Application",
     description:
-      "A university-grade room reservation platform with conflict-prevention algorithms, internal API sync, and an intuitive scheduling interface.",
+      "A booking system for campus study rooms that checks for time conflicts before confirming a reservation.",
     detailedOverview:
-      "Engineered to streamline room reservations across campus facilities. Features automated time-slot conflict validation, integration with MFU internal APIs, and responsive mobile-first UI for students and faculty.",
+      "Students and staff pick a room and a time slot, and the system checks it against existing bookings before confirming. It connects to the university's internal APIs and SSO, and the interface is designed for phones first since that's how most people book. Built with AI coding assistants throughout.",
     architecture: [
-      "FastAPI backend with atomic transaction validation for schedule overlap detection",
-      "Vue.js responsive frontend with calendar views and reservation management",
-      "Direct integration with university SSO and master scheduling databases",
+      "FastAPI backend that validates time-slot overlaps inside a single transaction",
+      "Vue.js frontend with a calendar view for browsing and managing bookings",
+      "Connected to university SSO and the central scheduling data",
     ],
     keyResults: [
-      "Eliminated double-booking conflicts across university study rooms.",
-      "Provided fast, instant reservation confirmations with internal API integration.",
+      "Double-bookings are caught before a reservation is confirmed.",
+      "Bookings confirm immediately instead of waiting on a manual approval step.",
     ],
     tags: ["Vue.js", "FastAPI", "Docker", "Nginx", "MFU Internal API", "REST API"],
     github: "https://github.com/nalikanon/booking4Roommfu",
@@ -236,13 +335,14 @@ export const experience: ExperienceItem[] = [
     period: "2025 – 2026",
     location: "Chiang Rai, Thailand",
     description: [
-      "Designed and developed multi-agent AI systems with dedicated task analysis, execution, and summarization agents.",
-      "Implemented canonical context memory mechanisms for persisting agent state and conversation history across turns.",
-      "Integrated AWS Bedrock LLM endpoints and built OpenAI-compatible gateway services.",
-      "Developed custom MCP (Model Context Protocol) clients to enable AI agent tool calling on external servers.",
-      "Engineered real-time bi-directional streaming for AI responses using Socket.IO and WebSockets.",
-      "Built full-stack web applications with Vue.js, Node.js, and FastAPI, integrating MFU SSO authentication.",
-      "Containerized microservices using Docker and configured Nginx for SSL, load balancing, and reverse proxying.",
+      "Built a multi-agent AI system that splits work between task analysis, execution, and summarization agents.",
+      "Added a context memory layer so agents keep conversation history across turns.",
+      "Connected AWS Bedrock LLMs behind an OpenAI-compatible gateway.",
+      "Wrote a custom MCP client so agents can call tools on external servers.",
+      "Set up real-time streaming for AI responses with Socket.IO and WebSockets.",
+      "Built the web apps with Vue.js, Node.js, and FastAPI, connected to university SSO.",
+      "Containerized everything with Docker and set up Nginx for SSL and reverse proxying.",
+      "Used AI coding assistants throughout, reviewing and testing the output before it shipped.",
     ],
     technologies: [
       "Vue.js",
@@ -254,6 +354,7 @@ export const experience: ExperienceItem[] = [
       "AWS Bedrock",
       "Socket.IO",
       "MCP Protocol",
+      "AI Coding Assistants",
     ],
   },
 ];
@@ -266,6 +367,8 @@ export const education: EducationItem[] = [
     period: "2022 – 2025",
     location: "Chiang Rai, Thailand",
     gpa: "3.16 / 4.00",
+    transcriptUrl: "/projects/Transcript.pdf",
+    graduationCertUrl: "/projects/หนังสือรับรองคาดว่าจะสำเร็จการศึกษา.pdf",
   },
 ];
 
