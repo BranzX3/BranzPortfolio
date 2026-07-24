@@ -8,71 +8,56 @@ export default function Hero() {
       id="hero"
       className="section"
       style={{
-        minHeight: "100vh",
+        minHeight: "92vh",
         display: "flex",
         alignItems: "center",
         paddingTop: "7.5rem",
         paddingBottom: "4rem",
-        position: "relative",
-        overflow: "hidden",
       }}
     >
-      {/* Editorial Background Accent Light */}
-      <div
-        style={{
-          position: "absolute",
-          top: "10%",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "800px",
-          height: "400px",
-          background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(99, 102, 241, 0.15), transparent 80%)",
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
-
-      <div className="container" style={{ position: "relative", zIndex: 1 }}>
-        <div style={{ maxWidth: "880px" }}>
+      <div className="container">
+        <div style={{ maxWidth: "840px" }}>
           {/* Badge */}
-          <div style={{ marginBottom: "1.5rem" }}>
-            <span className="editorial-badge">
-              <span className="editorial-badge-dot" />
+          <div style={{ marginBottom: "1.75rem" }}>
+            <span className="paper-badge">
+              <span className="paper-badge-dot" />
               {siteConfig.location} — {siteConfig.tagline}
             </span>
           </div>
 
-          {/* Main Editorial Headline */}
+          {/* Headline Typography (Serif Editorial) */}
           <h1
             style={{
-              fontSize: "clamp(2.8rem, 6.5vw, 4.8rem)",
-              fontWeight: 900,
+              fontSize: "clamp(2.9rem, 6.8vw, 4.8rem)",
+              fontFamily: "var(--font-serif)",
+              fontWeight: 600,
               lineHeight: 1.08,
-              letterSpacing: "-0.03em",
-              marginBottom: "1.5rem",
+              letterSpacing: "-0.02em",
+              color: "var(--text-ink)",
+              marginBottom: "1.75rem",
             }}
           >
-            Engineering <span style={{ background: "var(--gradient-accent)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Multi-Agent AI</span> & Modern Full-Stack Systems
+            Crafting Intelligent Web Systems & <span style={{ color: "var(--accent-terracotta)", fontStyle: "italic" }}>Multi-Agent AI</span> Architecture.
           </h1>
 
-          {/* Bio Subtitle */}
+          {/* Bio intro */}
           <p
             style={{
-              fontSize: "clamp(1.1rem, 2vw, 1.3rem)",
+              fontSize: "clamp(1.1rem, 2vw, 1.25rem)",
               color: "var(--text-secondary)",
-              lineHeight: 1.6,
-              maxWidth: "720px",
+              lineHeight: 1.7,
+              maxWidth: "700px",
               marginBottom: "2.5rem",
             }}
           >
-            Hello, I&apos;m <strong style={{ color: "var(--text-main)", fontWeight: 600 }}>{siteConfig.name} ({siteConfig.nickname})</strong>. {aboutMe.headline}
+            Hello, I&apos;m <strong style={{ color: "var(--text-ink)", fontWeight: 600 }}>{siteConfig.name} ({siteConfig.nickname})</strong>. {aboutMe.headline}
           </p>
 
-          {/* Action Callouts & Links */}
+          {/* Action CTAs & Social Links */}
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1rem", marginBottom: "4rem" }}>
             <a href="#projects" className="btn-primary">
-              View Featured Work
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              View Selected Work
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />
               </svg>
@@ -83,7 +68,7 @@ export default function Hero() {
             </a>
 
             {/* Social Icons Quick Bar */}
-            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginLeft: "0.5rem" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginLeft: "0.5rem" }}>
               {socialLinks.github && (
                 <a
                   href={socialLinks.github}
@@ -95,11 +80,12 @@ export default function Hero() {
                     height: "44px",
                     borderRadius: "50%",
                     border: "1px solid var(--color-border)",
-                    background: "rgba(255, 255, 255, 0.03)",
+                    background: "var(--surface-cream)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     color: "var(--text-secondary)",
+                    boxShadow: "var(--shadow-warm-sm)",
                     transition: "all 200ms ease",
                   }}
                 >
@@ -119,11 +105,12 @@ export default function Hero() {
                     height: "44px",
                     borderRadius: "50%",
                     border: "1px solid var(--color-border)",
-                    background: "rgba(255, 255, 255, 0.03)",
+                    background: "var(--surface-cream)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     color: "var(--text-secondary)",
+                    boxShadow: "var(--shadow-warm-sm)",
                     transition: "all 200ms ease",
                   }}
                 >
@@ -142,21 +129,21 @@ export default function Hero() {
               gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
               gap: "1.25rem",
               padding: "1.75rem",
-              borderRadius: "var(--radius-xl)",
-              background: "rgba(15, 20, 30, 0.6)",
-              backdropFilter: "blur(12px)",
+              borderRadius: "var(--radius-lg)",
+              background: "var(--surface-cream)",
               border: "1px solid var(--color-border)",
+              boxShadow: "var(--shadow-warm-sm)",
             }}
           >
             {aboutMe.facts.map((fact) => (
               <div key={fact.label} style={{ display: "flex", flexDirection: "column" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.2rem" }}>
                   <span style={{ fontSize: "1.2rem" }}>{fact.icon}</span>
-                  <span style={{ fontSize: "1.3rem", fontWeight: 800, color: "var(--text-main)", fontFamily: "var(--font-heading)" }}>
+                  <span style={{ fontSize: "1.3rem", fontWeight: 700, color: "var(--text-ink)", fontFamily: "var(--font-serif)" }}>
                     {fact.value}
                   </span>
                 </div>
-                <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
+                <span style={{ fontSize: "0.82rem", color: "var(--text-secondary)", fontFamily: "var(--font-mono)" }}>
                   {fact.label}
                 </span>
               </div>

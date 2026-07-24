@@ -40,29 +40,28 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         alignItems: "center",
         justifyContent: "center",
         padding: "1.5rem",
-        background: "rgba(3, 5, 10, 0.85)",
-        backdropFilter: "blur(16px)",
-        WebkitBackdropFilter: "blur(16px)",
-        animation: "fadeIn 200ms ease",
+        background: "rgba(43, 36, 30, 0.5)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
       }}
       onClick={onClose}
     >
       <div
         style={{
           width: "100%",
-          maxWidth: "780px",
+          maxWidth: "760px",
           maxHeight: "90vh",
           overflowY: "auto",
-          background: "var(--bg-subtle)",
-          border: "1px solid var(--color-border-bright)",
+          background: "var(--surface-cream)",
+          border: "1px solid var(--color-border)",
           borderRadius: "var(--radius-xl)",
           padding: "2.25rem",
-          boxShadow: "0 25px 60px rgba(0, 0, 0, 0.8)",
+          boxShadow: "var(--shadow-warm-lg)",
           position: "relative",
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
+        {/* Close Button */}
         <button
           onClick={onClose}
           aria-label="Close modal"
@@ -73,13 +72,13 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             width: "36px",
             height: "36px",
             borderRadius: "50%",
-            background: "rgba(255, 255, 255, 0.06)",
+            background: "var(--bg-paper)",
             border: "1px solid var(--color-border)",
             color: "var(--text-secondary)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            fontSize: "1.2rem",
+            fontSize: "1.1rem",
             cursor: "pointer",
             transition: "all 200ms ease",
           }}
@@ -93,9 +92,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             style={{
               padding: "0.3rem 0.8rem",
               borderRadius: "var(--radius-full)",
-              background: `${project.color}20`,
-              border: `1px solid ${project.color}50`,
-              color: project.color,
+              background: "var(--accent-terracotta-light)",
+              border: "1px solid var(--accent-terracotta)",
+              color: "var(--accent-terracotta)",
               fontFamily: "var(--font-mono)",
               fontSize: "0.78rem",
               fontWeight: 600,
@@ -104,23 +103,23 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             {project.category}
           </span>
           {project.featured && (
-            <span style={{ fontSize: "0.78rem", color: "var(--accent-emerald)", fontFamily: "var(--font-mono)" }}>
+            <span style={{ fontSize: "0.78rem", color: "var(--accent-moss)", fontFamily: "var(--font-mono)", fontWeight: 500 }}>
               ★ Featured System
             </span>
           )}
         </div>
 
         {/* Title */}
-        <h2 style={{ fontSize: "clamp(1.75rem, 4vw, 2.2rem)", fontWeight: 800, color: "var(--text-main)", marginBottom: "1.25rem" }}>
+        <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.3rem)", fontFamily: "var(--font-serif)", fontWeight: 700, color: "var(--text-ink)", marginBottom: "1.25rem" }}>
           {project.title}
         </h2>
 
         {/* Detailed Overview */}
         <div style={{ marginBottom: "1.75rem" }}>
-          <h3 style={{ fontSize: "0.9rem", fontFamily: "var(--font-mono)", color: "var(--accent-primary)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.5rem" }}>
+          <h3 style={{ fontSize: "0.85rem", fontFamily: "var(--font-mono)", color: "var(--accent-terracotta)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.5rem" }}>
             Overview
           </h3>
-          <p style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: 1.7 }}>
+          <p style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: 1.75 }}>
             {project.detailedOverview}
           </p>
         </div>
@@ -128,12 +127,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         {/* Architecture Highlights */}
         {project.architecture && project.architecture.length > 0 && (
           <div style={{ marginBottom: "1.75rem" }}>
-            <h3 style={{ fontSize: "0.9rem", fontFamily: "var(--font-mono)", color: "var(--accent-cyan)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.75rem" }}>
-              Architecture & Technical Breakdown
+            <h3 style={{ fontSize: "0.85rem", fontFamily: "var(--font-mono)", color: "var(--accent-moss)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.75rem" }}>
+              Architecture & System Design
             </h3>
-            <ul style={{ display: "flex", flexDirection: "column", gap: "0.6rem", paddingLeft: "1.25rem", color: "var(--text-secondary)" }}>
+            <ul style={{ display: "flex", flexDirection: "column", gap: "0.65rem", paddingLeft: "1.25rem", color: "var(--text-secondary)" }}>
               {project.architecture.map((item, i) => (
-                <li key={i} style={{ fontSize: "0.95rem", lineHeight: 1.6 }}>
+                <li key={i} style={{ fontSize: "0.95rem", lineHeight: 1.65 }}>
                   {item}
                 </li>
               ))}
@@ -144,13 +143,13 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         {/* Key Results */}
         {project.keyResults && project.keyResults.length > 0 && (
           <div style={{ marginBottom: "1.75rem" }}>
-            <h3 style={{ fontSize: "0.9rem", fontFamily: "var(--font-mono)", color: "var(--accent-emerald)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.75rem" }}>
+            <h3 style={{ fontSize: "0.85rem", fontFamily: "var(--font-mono)", color: "var(--text-ink)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.75rem" }}>
               Key Impact & Deliverables
             </h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
               {project.keyResults.map((result, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.6rem", fontSize: "0.95rem", color: "var(--text-main)" }}>
-                  <span style={{ color: "var(--accent-emerald)" }}>✓</span>
+                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.6rem", fontSize: "0.95rem", color: "var(--text-ink)" }}>
+                  <span style={{ color: "var(--accent-terracotta)", fontWeight: 700 }}>✓</span>
                   <span>{result}</span>
                 </div>
               ))}
@@ -169,8 +168,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 key={tag}
                 style={{
                   padding: "0.3rem 0.75rem",
-                  borderRadius: "var(--radius-md)",
-                  background: "rgba(255, 255, 255, 0.05)",
+                  borderRadius: "var(--radius-sm)",
+                  background: "var(--bg-paper)",
                   border: "1px solid var(--color-border)",
                   fontSize: "0.8rem",
                   fontFamily: "var(--font-mono)",
@@ -183,7 +182,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           </div>
         </div>
 
-        {/* Action Links */}
+        {/* Action Buttons */}
         <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", paddingTop: "1rem", borderTop: "1px solid var(--color-border)" }}>
           {project.demo && (
             <a href={project.demo} target="_blank" rel="noopener noreferrer" className="btn-primary">

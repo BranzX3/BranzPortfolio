@@ -19,7 +19,7 @@ export default function Certifications() {
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.75rem" }}>
           {certifications.map((cert) => (
-            <div key={cert.id} className="glass-card" style={{ padding: "1.75rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <div key={cert.id} className="paper-card" style={{ padding: "1.75rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <span style={{ fontSize: "1.75rem" }}>📜</span>
                 <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.82rem", color: "var(--text-muted)" }}>
@@ -28,10 +28,10 @@ export default function Certifications() {
               </div>
 
               <div>
-                <h3 style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--text-main)", marginBottom: "0.25rem" }}>
+                <h3 style={{ fontSize: "1.3rem", fontFamily: "var(--font-serif)", fontWeight: 700, color: "var(--text-ink)", marginBottom: "0.25rem" }}>
                   {cert.name}
                 </h3>
-                <p style={{ fontSize: "0.9rem", color: "var(--accent-primary)", fontWeight: 500 }}>
+                <p style={{ fontSize: "0.9rem", color: "var(--accent-terracotta)", fontWeight: 600 }}>
                   Issuer: {cert.issuer}
                 </p>
               </div>

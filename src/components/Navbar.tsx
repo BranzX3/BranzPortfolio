@@ -45,54 +45,57 @@ export default function Navbar() {
         right: 0,
         zIndex: 100,
         padding: scrolled ? "0.85rem 0" : "1.25rem 0",
-        background: scrolled ? "rgba(7, 9, 14, 0.85)" : "transparent",
-        backdropFilter: scrolled ? "blur(20px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(255, 255, 255, 0.08)" : "1px solid transparent",
+        background: scrolled ? "rgba(244, 238, 220, 0.9)" : "transparent",
+        backdropFilter: scrolled ? "blur(16px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
+        borderBottom: scrolled ? "1px solid var(--color-border)" : "1px solid transparent",
         transition: "all 300ms cubic-bezier(0.16, 1, 0.3, 1)",
       }}
     >
       <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        {/* Brand Brand logo / title */}
-        <a href="#hero" style={{ display: "flex", alignItems: "center", gap: "0.75rem", textDecoration: "none" }}>
+        {/* Brand Monogram */}
+        <a href="#hero" style={{ display: "flex", alignItems: "center", gap: "0.6rem", textDecoration: "none" }}>
           <div
             style={{
-              width: "36px",
-              height: "36px",
+              width: "38px",
+              height: "38px",
               borderRadius: "10px",
-              background: "var(--gradient-accent)",
+              background: "var(--surface-cream)",
+              border: "1px solid var(--color-border)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontWeight: 800,
-              color: "#fff",
-              fontSize: "1.1rem",
-              boxShadow: "0 4px 15px rgba(99, 102, 241, 0.4)",
+              fontFamily: "var(--font-serif)",
+              fontWeight: 700,
+              color: "var(--accent-terracotta)",
+              fontSize: "1.3rem",
+              boxShadow: "var(--shadow-warm-sm)",
             }}
           >
-            P
+            P.
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <span style={{ fontWeight: 700, fontSize: "1.1rem", color: "var(--text-main)", letterSpacing: "-0.02em" }}>
-              {siteConfig.name} <span style={{ color: "var(--accent-primary)" }}>.</span>
+            <span style={{ fontWeight: 600, fontSize: "1.05rem", color: "var(--text-ink)", fontFamily: "var(--font-serif)" }}>
+              {siteConfig.name} {siteConfig.lastName}
             </span>
-            <span style={{ fontSize: "0.7rem", color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
-              {siteConfig.nickname} Portfolio
+            <span style={{ fontSize: "0.72rem", color: "var(--text-secondary)", fontFamily: "var(--font-mono)" }}>
+              {siteConfig.nickname} • Portfolio
             </span>
           </div>
         </a>
 
-        {/* Desktop Nav Items */}
+        {/* Desktop Nav */}
         <nav className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: "1.75rem" }}>
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "0.35rem",
-              background: "rgba(255, 255, 255, 0.03)",
-              padding: "0.35rem 0.5rem",
+              gap: "0.25rem",
+              background: "var(--surface-cream)",
+              padding: "0.3rem 0.4rem",
               borderRadius: "var(--radius-full)",
               border: "1px solid var(--color-border)",
+              boxShadow: "var(--shadow-warm-sm)",
             }}
           >
             {navItems.map((item) => {
@@ -103,13 +106,12 @@ export default function Navbar() {
                   key={item.label}
                   href={item.href}
                   style={{
-                    padding: "0.4rem 1rem",
+                    padding: "0.4rem 0.95rem",
                     borderRadius: "var(--radius-full)",
-                    fontSize: "0.88rem",
+                    fontSize: "0.86rem",
                     fontWeight: isActive ? 600 : 400,
-                    color: isActive ? "#ffffff" : "var(--text-secondary)",
-                    background: isActive ? "rgba(99, 102, 241, 0.2)" : "transparent",
-                    border: isActive ? "1px solid rgba(99, 102, 241, 0.4)" : "1px solid transparent",
+                    color: isActive ? "#FFFFFF" : "var(--text-secondary)",
+                    background: isActive ? "var(--accent-terracotta)" : "transparent",
                     transition: "all 200ms ease",
                   }}
                 >
@@ -119,44 +121,41 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Status Badge */}
           {siteConfig.availableForWork && (
-            <div className="editorial-badge" style={{ fontSize: "0.75rem" }}>
-              <span className="editorial-badge-dot" />
-              Available for Hire
+            <div className="paper-badge" style={{ fontSize: "0.76rem" }}>
+              <span className="paper-badge-dot" />
+              Available for Work
             </div>
           )}
 
-          {/* Resume link */}
           <a
             href={siteConfig.resumeUrl}
             className="btn-secondary"
-            style={{ padding: "0.5rem 1.1rem", fontSize: "0.85rem" }}
+            style={{ padding: "0.45rem 1.1rem", fontSize: "0.85rem" }}
           >
             Resume 📄
           </a>
         </nav>
 
-        {/* Mobile Hamburger Toggle */}
+        {/* Mobile Toggle */}
         <button
           className="mobile-toggle"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
+          aria-label="Toggle Menu"
           style={{
             display: "none",
             flexDirection: "column",
             gap: "5px",
             padding: "0.5rem",
-            background: "transparent",
           }}
         >
-          <span style={{ width: "22px", height: "2px", background: "#fff", transition: "0.3s" }} />
-          <span style={{ width: "22px", height: "2px", background: "#fff", transition: "0.3s" }} />
-          <span style={{ width: "16px", height: "2px", background: "var(--accent-primary)", transition: "0.3s" }} />
+          <span style={{ width: "22px", height: "2px", background: "var(--text-ink)" }} />
+          <span style={{ width: "22px", height: "2px", background: "var(--text-ink)" }} />
+          <span style={{ width: "16px", height: "2px", background: "var(--accent-terracotta)" }} />
         </button>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div
           style={{
@@ -164,13 +163,13 @@ export default function Navbar() {
             top: "100%",
             left: 0,
             right: 0,
-            background: "rgba(7, 9, 14, 0.96)",
-            backdropFilter: "blur(25px)",
+            background: "var(--bg-paper)",
             borderBottom: "1px solid var(--color-border)",
             padding: "1.5rem",
             display: "flex",
             flexDirection: "column",
             gap: "1rem",
+            boxShadow: "var(--shadow-warm-md)",
           }}
         >
           {navItems.map((item) => (
@@ -180,10 +179,10 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
               style={{
                 fontSize: "1.1rem",
-                fontWeight: 600,
-                color: "var(--text-main)",
+                fontFamily: "var(--font-serif)",
+                color: "var(--text-ink)",
                 padding: "0.5rem 0",
-                borderBottom: "1px solid rgba(255, 255, 255, 0.05)",
+                borderBottom: "1px solid var(--color-border)",
               }}
             >
               {item.label}

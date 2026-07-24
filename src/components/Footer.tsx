@@ -10,7 +10,7 @@ export default function Footer() {
       style={{
         borderTop: "1px solid var(--color-border)",
         padding: "2.5rem 0",
-        background: "var(--bg-dark)",
+        background: "var(--bg-paper)",
       }}
     >
       <div
@@ -24,11 +24,11 @@ export default function Footer() {
         }}
       >
         <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
-          <div style={{ fontSize: "0.95rem", fontWeight: 600, color: "var(--text-main)" }}>
+          <div style={{ fontSize: "0.95rem", fontWeight: 600, color: "var(--text-ink)", fontFamily: "var(--font-serif)" }}>
             © {currentYear} {siteConfig.name} {siteConfig.lastName}. All rights reserved.
           </div>
-          <div style={{ fontSize: "0.8rem", color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
-            Designed & Engineered with Modern Dark Editorial Aesthetic
+          <div style={{ fontSize: "0.8rem", color: "var(--text-secondary)", fontFamily: "var(--font-mono)" }}>
+            Designed with Japanese Minimalist Warm Paper Aesthetic
           </div>
         </div>
 

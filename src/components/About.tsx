@@ -24,7 +24,7 @@ export default function About() {
                 style={{
                   fontSize: "1.05rem",
                   color: "var(--text-secondary)",
-                  lineHeight: 1.7,
+                  lineHeight: 1.75,
                 }}
               >
                 {paragraph}
@@ -37,13 +37,15 @@ export default function About() {
                 <span
                   key={tag}
                   style={{
-                    padding: "0.4rem 0.85rem",
+                    padding: "0.35rem 0.85rem",
                     borderRadius: "var(--radius-full)",
-                    background: "rgba(99, 102, 241, 0.08)",
-                    border: "1px solid rgba(99, 102, 241, 0.2)",
-                    color: "var(--accent-primary)",
+                    background: "var(--surface-cream)",
+                    border: "1px solid var(--color-border)",
+                    color: "var(--accent-terracotta)",
                     fontSize: "0.82rem",
+                    fontFamily: "var(--font-mono)",
                     fontWeight: 500,
+                    boxShadow: "var(--shadow-warm-sm)",
                   }}
                 >
                   #{tag}
@@ -52,31 +54,31 @@ export default function About() {
             </div>
           </div>
 
-          {/* Right Column: Key Focus Cards & Education */}
+          {/* Right Column: Education & Philosophy */}
           <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
             {/* Education Card */}
             {education.map((edu) => (
               <div
                 key={edu.id}
-                className="glass-card"
-                style={{ padding: "1.75rem", borderLeft: "4px solid var(--accent-primary)" }}
+                className="paper-card"
+                style={{ padding: "1.75rem", borderLeft: "4px solid var(--accent-terracotta)" }}
               >
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.5rem" }}>
-                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "var(--accent-cyan)" }}>
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "var(--accent-terracotta)" }}>
                     🎓 EDUCATION
                   </span>
                   <span style={{ fontSize: "0.85rem", color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
                     {edu.period}
                   </span>
                 </div>
-                <h3 style={{ fontSize: "1.25rem", fontWeight: 700, color: "var(--text-main)", marginBottom: "0.25rem" }}>
+                <h3 style={{ fontSize: "1.35rem", fontWeight: 700, color: "var(--text-ink)", marginBottom: "0.25rem" }}>
                   {edu.degree}
                 </h3>
                 <p style={{ fontSize: "0.95rem", color: "var(--text-secondary)" }}>
                   {edu.institution} — {edu.location}
                 </p>
                 {edu.gpa && (
-                  <div style={{ marginTop: "0.75rem", display: "inline-block", padding: "0.25rem 0.75rem", background: "rgba(255, 255, 255, 0.05)", borderRadius: "var(--radius-sm)", fontSize: "0.85rem", color: "var(--text-main)", fontWeight: 600 }}>
+                  <div style={{ marginTop: "0.75rem", display: "inline-block", padding: "0.25rem 0.75rem", background: "var(--bg-paper)", border: "1px solid var(--color-border)", borderRadius: "var(--radius-sm)", fontSize: "0.85rem", color: "var(--text-ink)", fontWeight: 600 }}>
                     GPA: {edu.gpa}
                   </div>
                 )}
@@ -84,11 +86,11 @@ export default function About() {
             ))}
 
             {/* Philosophy Card */}
-            <div className="glass-card" style={{ padding: "1.75rem" }}>
-              <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "var(--accent-secondary)", marginBottom: "0.5rem" }}>
-                ⚡ DEVELOPMENT PHILOSOPHY
+            <div className="paper-card" style={{ padding: "1.75rem" }}>
+              <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "var(--accent-moss)", marginBottom: "0.5rem" }}>
+                🌿 CRAFTSMANSHIP PHILOSOPHY
               </div>
-              <p style={{ fontSize: "0.98rem", color: "var(--text-secondary)", lineHeight: 1.6 }}>
+              <p style={{ fontSize: "1rem", color: "var(--text-secondary)", lineHeight: 1.65, fontFamily: "var(--font-serif)", fontStyle: "italic" }}>
                 &ldquo;Building software isn&apos;t just writing syntax—it&apos;s about designing resilient pipelines, seamless user experiences, and bridging autonomous AI agents with real-world enterprise infrastructure.&rdquo;
               </p>
             </div>
