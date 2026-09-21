@@ -63,7 +63,7 @@ export const siteConfig = {
   tagline: "Full-Stack Developer & AI-Assisted Builder",
   description:
     "I build web applications and AI systems, working alongside AI coding assistants as part of my everyday workflow.",
-  email: "bunzzbranzz@gmail.com",
+  email: "peerapong.wongwichai@gmail.com",
   location: "Lampang, Thailand",
   availableForWork: true,
   resumeUrl: "/projects/Peerapong Wongwichai.pdf",

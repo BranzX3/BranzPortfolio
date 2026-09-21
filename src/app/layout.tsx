@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Peerapong Wongwichai" }],
   openGraph: {
-    title: "Peerapong Wongwichai (Branz) — Portfolio",
+    title: "Peerapong Wongwichai (Deego) — Portfolio",
     description:
       "I build web applications and AI systems, with AI coding assistants as part of my everyday workflow.",
     type: "website",
