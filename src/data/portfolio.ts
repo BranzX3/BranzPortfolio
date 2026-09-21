@@ -66,7 +66,7 @@ export const siteConfig = {
   email: "peerapong.wongwichai@gmail.com",
   location: "Lampang, Thailand",
   availableForWork: true,
-  resumeUrl: "/projects/Peerapong Wongwichai.pdf",
+  resumeUrl: "/projects/CV_Peerapong Wongwichai.pdf",
 };
 
 export const heroConfig = {
